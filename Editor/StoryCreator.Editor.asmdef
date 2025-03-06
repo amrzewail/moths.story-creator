@@ -1,0 +1,17 @@
+{
+    "name": "StoryCreator.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:be4aba4923dfe824f99c081ed484c6fd",
+        "GUID:b7a795824752b5b4982f375797ed8b57"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

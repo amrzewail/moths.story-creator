@@ -1,0 +1,89 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-1989694837204556562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46cd183354789b043af0249ced7f458b, type: 3}
+  m_Name: The Escape
+  m_EditorClassIdentifier: 
+  _title: The Escape
+  _graphElements: []
+  Guid: f91edaf4-5365-42a4-b297-2347dfb6d4e5
+  Position: {x: 487, y: -38}
+  Ports: []
+  startGuid: 
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2268c302af7794b4f9fbe6f82e188c09, type: 3}
+  m_Name: Fia Story
+  m_EditorClassIdentifier: 
+  _title: Fia Story
+  _graphElements: []
+  Guid: 95d4905e-2d4d-4d54-9dc2-c29343da2fae
+  Position: {x: 0, y: 0}
+  Ports: []
+  _quests:
+  - {fileID: 8194948796623391773}
+  - {fileID: -1989694837204556562}
+  - {fileID: 4273197692744679722}
+  _startingQuest: {fileID: 8194948796623391773}
+--- !u!114 &4273197692744679722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46cd183354789b043af0249ced7f458b, type: 3}
+  m_Name: Vengeance
+  m_EditorClassIdentifier: 
+  _title: Vengeance
+  _graphElements: []
+  Guid: cb000871-fe49-44f6-8635-f0ccfcf8fa69
+  Position: {x: 477, y: 140}
+  Ports: []
+  startGuid: 
+--- !u!114 &8194948796623391773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46cd183354789b043af0249ced7f458b, type: 3}
+  m_Name: The Cursed
+  m_EditorClassIdentifier: 
+  _title: The Cursed
+  _graphElements:
+  - serialized:
+      type: StoryCreator.QuestElements.Objectives.TalkObjective
+      json: '{"_title":"Talk to fia","_graphElements":[],"Guid":"6f830cc4-169c-4273-b002-616363486aed","Position":{"x":211.0,"y":-13.0},"Ports":[],"Behaviours":[{"serialized":{"type":"StoryCreator.QuestElements.Behaviours.SpawnBehaviour","json":"{\"_title\":\"Spawn
+        fia\",\"_graphElements\":[],\"Guid\":\"5abbd020-2fdb-4312-a946-079a890ec857\",\"Position\":{\"x\":0.0,\"y\":0.0},\"Ports\":[]}"}},{"serialized":{"type":"StoryCreator.QuestElements.Behaviours.AnimateBehaviour","json":"{\"_title\":\"Fia
+        is crying\",\"_graphElements\":[],\"Guid\":\"d6a0feb7-2dac-44df-99f0-e4d7989049a9\",\"Position\":{\"x\":0.0,\"y\":0.0},\"Ports\":[],\"animation\":{\"instanceID\":0}}"}}],"talkerName":"","talkPosition":{"x":0.0,"y":0.0,"z":0.0}}'
+  Guid: bc48836d-4616-482f-be35-265dfe47a3fb
+  Position: {x: 171, y: 0}
+  Ports:
+  - name: Save the child
+    guid: da99eda3-551f-4193-b9d6-c786d98fda41
+    inputGuid: f91edaf4-5365-42a4-b297-2347dfb6d4e5
+  - name: Save the village
+    guid: e4fe7cf8-8518-48d3-a50e-b75d8e87821a
+    inputGuid: cb000871-fe49-44f6-8635-f0ccfcf8fa69
+  startGuid: 6f830cc4-169c-4273-b002-616363486aed
