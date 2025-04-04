@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace StoryCreator.Models
+namespace Moths.StoryCreator.Models
 {
     [System.Serializable]
     public class SerializableScriptableObject

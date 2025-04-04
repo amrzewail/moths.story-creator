@@ -1,4 +1,4 @@
-using StoryCreator.Models;
+using Moths.StoryCreator.Models;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -6,7 +6,7 @@ using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace StoryCreator.Editor.Models
+namespace Moths.StoryCreator.Editor.Models
 {
     using Editor = UnityEditor.Editor;
 

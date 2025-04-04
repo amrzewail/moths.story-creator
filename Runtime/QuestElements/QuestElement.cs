@@ -1,7 +1,7 @@
-using StoryCreator.ScriptableObjects;
+using Moths.StoryCreator.ScriptableObjects;
 using UnityEngine;
 
-namespace StoryCreator.QuestElements
+namespace Moths.StoryCreator.QuestElements
 {
     public abstract class QuestElement : GraphObject
     {

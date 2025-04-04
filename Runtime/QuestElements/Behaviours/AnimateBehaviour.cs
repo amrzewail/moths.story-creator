@@ -1,9 +1,9 @@
-using StoryCreator.Attributes;
+using Moths.StoryCreator.Attributes;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace StoryCreator.QuestElements.Behaviours
+namespace Moths.StoryCreator.QuestElements.Behaviours
 {
     [QuestElementInfo("BEHAVIOURS", "Animate", "icons/beh_animate")]
     public class AnimateBehaviour : QuestBehaviour

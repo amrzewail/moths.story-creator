@@ -1,7 +1,7 @@
-using Scripts.Graphs.Editor;
-using StoryCreator.Attributes;
-using StoryCreator.Models;
-using StoryCreator.QuestElements;
+using Moths.Graphs.Editor;
+using Moths.StoryCreator.Attributes;
+using Moths.StoryCreator.Models;
+using Moths.StoryCreator.QuestElements;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,7 +12,7 @@ using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace StoryCreator.Editor.Graphs.Nodes
+namespace Moths.StoryCreator.Editor.Graphs.Nodes
 {
     [System.Serializable]
     public class StartNode<TTargetType> : BasicNode

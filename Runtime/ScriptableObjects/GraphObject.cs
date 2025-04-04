@@ -1,9 +1,9 @@
-using StoryCreator.Models;
+using Moths.StoryCreator.Models;
 using System.Collections.Generic;
 using UnityEngine;
-using StoryCreator.Attributes;
+using Moths.StoryCreator.Attributes;
 
-namespace StoryCreator.ScriptableObjects
+namespace Moths.StoryCreator.ScriptableObjects
 {
     public abstract class GraphObject : ScriptableObject
     {

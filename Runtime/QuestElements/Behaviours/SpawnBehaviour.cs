@@ -1,9 +1,9 @@
-using StoryCreator.Attributes;
+using Moths.StoryCreator.Attributes;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace StoryCreator.QuestElements.Behaviours
+namespace Moths.StoryCreator.QuestElements.Behaviours
 {
     [QuestElementInfo("BEHAVIOURS", "Spawn", "icons/beh_spawn")]
     public class SpawnBehaviour : QuestBehaviour

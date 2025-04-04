@@ -1,7 +1,7 @@
-using StoryCreator.Attributes;
+using Moths.StoryCreator.Attributes;
 using UnityEngine;
 
-namespace StoryCreator.QuestElements.Objectives
+namespace Moths.StoryCreator.QuestElements.Objectives
 {
 
     [QuestElementInfo("OBJECTIVES", "Talk", "icons/obj_talk")]

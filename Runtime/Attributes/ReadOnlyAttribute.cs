@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace StoryCreator.Attributes
+namespace Moths.StoryCreator.Attributes
 {
     public class ReadOnlyAttribute : PropertyAttribute
     {

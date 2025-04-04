@@ -1,10 +1,10 @@
-using Scripts.Graphs.Editor;
-using StoryCreator.Attributes;
-using StoryCreator.Editor.Graphs.Nodes;
-using StoryCreator.Editor.VisualElements;
-using StoryCreator.Models;
-using StoryCreator.QuestElements;
-using StoryCreator.ScriptableObjects;
+using Moths.Graphs.Editor;
+using Moths.StoryCreator.Attributes;
+using Moths.StoryCreator.Editor.Graphs.Nodes;
+using Moths.StoryCreator.Editor.VisualElements;
+using Moths.StoryCreator.Models;
+using Moths.StoryCreator.QuestElements;
+using Moths.StoryCreator.ScriptableObjects;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -15,10 +15,10 @@ using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace StoryCreator.Editor.Graphs
+namespace Moths.StoryCreator.Editor.Graphs
 {
-    using Category = StoryCreator.Editor.VisualElements.Category;
-    using GraphObject = StoryCreator.ScriptableObjects.GraphObject;
+    using Category = Moths.StoryCreator.Editor.VisualElements.Category;
+    using GraphObject = Moths.StoryCreator.ScriptableObjects.GraphObject;
 
     public class QuestGraph : BaseGraph
     {
@@ -30,7 +30,7 @@ namespace StoryCreator.Editor.Graphs
 
         public override void Initialize(StoryEditor editor, GraphObject data)
         {
-            styleSheets.Add(Resources.Load<StyleSheet>("StoryCreator/Styles"));
+            styleSheets.Add(Resources.Load<StyleSheet>("Moths.StoryCreator/Styles"));
 
             _quest = (Quest)data;
 
@@ -104,16 +104,16 @@ namespace StoryCreator.Editor.Graphs
                 var t = type;
                 var attr = type.GetCustomAttribute<QuestElementInfoAttribute>();
                 VisualElement element = new VisualElement();
-                Image bg = new Image() { image = Resources.Load<Texture>("StoryCreator/icons/quest_element_bg") };
+                Image bg = new Image() { image = Resources.Load<Texture>("Moths.StoryCreator/icons/quest_element_bg") };
                 bg.tintColor = Color.red;
                 bg.AddToClassList("background");
                 element.Add(bg);
-                Image icon = new Image() { image = Resources.Load<Texture>($"StoryCreator/{attr.Icon}") };
+                Image icon = new Image() { image = Resources.Load<Texture>($"Moths.StoryCreator/{attr.Icon}") };
                 icon.AddToClassList("icon");
                 element.Add(icon);
                 element.Add(new Label(attr.Name));
                 element.AddToClassList("quest-element");
-                element.styleSheets.Add(Resources.Load<StyleSheet>("StoryCreator/Styles"));
+                element.styleSheets.Add(Resources.Load<StyleSheet>("Moths.StoryCreator/Styles"));
                 element.RegisterCallback<ClickEvent>(ev =>
                 {
                     ElementClickCallback(t);

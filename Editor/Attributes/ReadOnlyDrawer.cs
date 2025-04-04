@@ -1,11 +1,11 @@
 using UnityEditor;
 using UnityEngine;
-using StoryCreator.Attributes;
+using Moths.StoryCreator.Attributes;
 
-namespace StoryCreator.Editor.Attributes
+namespace Moths.StoryCreator.Editor.Attributes
 {
 
-    [CustomPropertyDrawer(typeof(StoryCreator.Attributes.ReadOnlyAttribute))]
+    [CustomPropertyDrawer(typeof(Moths.StoryCreator.Attributes.ReadOnlyAttribute))]
     public class ReadOnlyDrawer : PropertyDrawer
     {
         public override void OnGUI(Rect position,

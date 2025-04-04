@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace StoryCreator.Editor.VisualElements
+namespace Moths.StoryCreator.Editor.VisualElements
 {
     public class Category : VisualElement
     {
@@ -11,7 +11,7 @@ namespace StoryCreator.Editor.VisualElements
 
         public Category(string title) 
         {
-            styleSheets.Add(Resources.Load<StyleSheet>("StoryCreator/Styles"));
+            styleSheets.Add(Resources.Load<StyleSheet>("Moths.StoryCreator/Styles"));
 
             Label label = new Label();
             label.text = title;

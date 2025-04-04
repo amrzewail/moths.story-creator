@@ -1,7 +1,7 @@
-using Scripts.Graphs.Editor;
-using StoryCreator.Editor.Graphs.Nodes;
-using StoryCreator.Editor.VisualElements;
-using StoryCreator.ScriptableObjects;
+using Moths.Graphs.Editor;
+using Moths.StoryCreator.Editor.Graphs.Nodes;
+using Moths.StoryCreator.Editor.VisualElements;
+using Moths.StoryCreator.ScriptableObjects;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,7 +11,7 @@ using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace StoryCreator.Editor.Graphs
+namespace Moths.StoryCreator.Editor.Graphs
 {
     public class StoryGraph : BaseGraph
     {

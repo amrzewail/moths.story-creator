@@ -1,0 +1,19 @@
+{
+	"name": "com.moths.storycreator",
+	"displayName": "Moths Story Creator",
+	"version": "1.0.0",
+	"unity": "2022.3",
+	"description": "A tool for story and quest creation.",
+	"author": {
+		"name": "Amr Zewail",
+		"email": "amrzewail@hotmail.com",
+		"url": "https://github.com/amrzewail"
+	},
+	"dependencies": {
+		"com.moths.graphs": "1.0.0"
+	},
+	"changelog": {
+		"1.0.0": "- Initial release"
+	},
+	"license": "MIT"
+}

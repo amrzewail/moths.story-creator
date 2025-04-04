@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-using StoryCreator.Models;
-using StoryCreator.QuestElements.Objectives;
-using StoryCreator.Attributes;
+using Moths.StoryCreator.Models;
+using Moths.StoryCreator.QuestElements.Objectives;
+using Moths.StoryCreator.Attributes;
 
-namespace StoryCreator.ScriptableObjects
+namespace Moths.StoryCreator.ScriptableObjects
 {//
     public class Quest : GraphObject
     {

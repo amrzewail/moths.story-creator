@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace StoryCreator.ScriptableObjects
+namespace Moths.StoryCreator.ScriptableObjects
 {
 
     public class Story : GraphObject

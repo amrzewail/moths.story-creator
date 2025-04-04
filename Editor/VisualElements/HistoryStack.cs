@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace StoryCreator.Editor.VisualElements
+namespace Moths.StoryCreator.Editor.VisualElements
 {
     public class HistoryStack : VisualElement
     {
@@ -12,7 +12,7 @@ namespace StoryCreator.Editor.VisualElements
 
         public HistoryStack() 
         {
-            styleSheets.Add(Resources.Load<StyleSheet>("StoryCreator/Styles"));
+            styleSheets.Add(Resources.Load<StyleSheet>("Moths.StoryCreator/Styles"));
 
             _buttons = new();
         }

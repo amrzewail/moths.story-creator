@@ -1,6 +1,6 @@
 using System;
 
-namespace StoryCreator.Attributes
+namespace Moths.StoryCreator.Attributes
 {
     public class QuestElementInfoAttribute : Attribute
     {

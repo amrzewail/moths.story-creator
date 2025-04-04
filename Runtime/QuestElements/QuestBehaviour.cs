@@ -1,5 +1,5 @@
 
-namespace StoryCreator.QuestElements
+namespace Moths.StoryCreator.QuestElements
 {
     public abstract class QuestBehaviour : QuestElement
     {

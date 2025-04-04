@@ -1,9 +1,9 @@
 
-using StoryCreator.Models;
+using Moths.StoryCreator.Models;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace StoryCreator.QuestElements
+namespace Moths.StoryCreator.QuestElements
 {
     public abstract class QuestObjective : QuestElement
     {

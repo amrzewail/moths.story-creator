@@ -1,6 +1,6 @@
-using StoryCreator.Editor.Graphs;
-using StoryCreator.Editor.VisualElements;
-using StoryCreator.ScriptableObjects;
+using Moths.StoryCreator.Editor.Graphs;
+using Moths.StoryCreator.Editor.VisualElements;
+using Moths.StoryCreator.ScriptableObjects;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,7 +9,7 @@ using UnityEditor.Callbacks;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace StoryCreator.Editor
+namespace Moths.StoryCreator.Editor
 {
     using Editor = UnityEditor.Editor;
 
