@@ -25,7 +25,7 @@ namespace Moths.StoryCreator.Editor
         public HistoryStack History => _history;
         public GraphObject CurrentGraph{ get; private set; }
 
-        [MenuItem("Story Creator/Create Story")]
+        [MenuItem("Moths/Story Creator/Create Story")]
         public static void CreateStoryMenu()
         {
             Story story = ScriptableObject.CreateInstance<Story>();

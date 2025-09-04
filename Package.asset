@@ -13,18 +13,28 @@ MonoBehaviour:
   m_Name: Package
   m_EditorClassIdentifier: 
   _package:
-    name: 
-    displayName: 
+    name: com.moths.storycreator
+    displayName: Moths Story Creator
     version:
-      v0: 0
+      v0: 1
       v1: 0
       v2: 0
-    unity: 0
-    description: 
+    unity: 1
+    description: A tool for story and quest creation.
     author:
-      name: 
-      email: 
-      url: 
-    dependencies: []
-    changelog: []
+      name: Amr Zewail
+      email: amrzewail@hotmail.com
+      url: https://github.com/amrzewail
+    dependencies:
+    - name: com.moths.graphs
+      version:
+        v0: 1
+        v1: 0
+        v2: 0
+    changelog:
+    - version:
+        v0: 1
+        v1: 0
+        v2: 0
+      description: '- Initial release'
     license: 0
