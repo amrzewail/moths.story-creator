@@ -1,7 +1,9 @@
 {
     "name": "Moths.StoryCreator",
     "rootNamespace": "",
-    "references": [],
+    "references": [
+        "GUID:3c4641a474dbe544aafa49297e96ae9e"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
