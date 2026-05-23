@@ -1,9 +1,4 @@
-
-using Moths.StoryCreator.ScriptableObjects;
-using UnityEditor;
-using UnityEngine.UIElements;
-
-namespace Moths.StoryCreator.Editor.ScriptableObjects
+namespace Moths.Stories.Editor.ScriptableObjects
 {
 
     //[CustomEditor(typeof(GraphObject), true)]

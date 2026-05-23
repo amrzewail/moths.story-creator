@@ -1,9 +1,8 @@
 using Moths.Graphs.Editor;
-using Moths.StoryCreator.Editor.Graphs.Nodes;
-using Moths.StoryCreator.Editor.VisualElements;
-using Moths.StoryCreator.ScriptableObjects;
+using Moths.Stories;
+using Moths.Stories.Editor.Graphs.Nodes;
+using Moths.Stories.Editor.VisualElements;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using UnityEditor;
@@ -11,89 +10,96 @@ using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace Moths.StoryCreator.Editor.Graphs
+namespace Moths.Stories.Editor.Graphs
 {
-    public class StoryGraph : BaseGraph
+    public class StoryGraph : BaseGraph<Story>, IRefreshable
     {
-        private StoryEditor _editor;
+        private StoryCreator _editor;
         private Story _story;
-        private Button _newQuestBtn;
-        private VisualElement _questList;
 
-        public override void Initialize(StoryEditor editor, GraphObject data)
+        public override void Initialize(StoryCreator editor, Story data)
         {
             _editor = editor;
             _story = (Story)data;
 
             Sidebar sidebar = new Sidebar();
-            sidebar.title = "QUESTS LIST";
+            sidebar.title = _story.Name;
 
-            Button newQuestBtn = new Button();
-            newQuestBtn.AddToClassList("new-quest-btn");
-            newQuestBtn.text = "NEW QUEST";
-            newQuestBtn.clicked += NewQuestCallback;
+            var editCategory = sidebar.AddCategory("Edit");
 
-            _questList = new VisualElement();
-            _questList.AddToClassList("quest-list");
+            Button newBeatBtn = new Button();
+            newBeatBtn.AddToClassList("new-quest-btn");
+            newBeatBtn.text = "NEW BEAT";
+            newBeatBtn.clicked += NewQuestCallback;
 
-            sidebar.Content.Add(_questList);
-            sidebar.Content.Add(newQuestBtn);
+            editCategory.Content.Add(newBeatBtn);
 
             _graphView.EdgeCreated += EdgeCreatedCallback;
             _graphView.EdgeRemoved += EdgeRemovedCallback;
+            _graphView.NodeSelected += NodeSelectedCallback;
+            _graphView.NodeUnselected += NodeUnselectedCallback;
+            _graphView.NodeRemoved += NodeRemovedCallback;
 
             this.Add(sidebar);
 
             Refresh();
         }
 
+        private void NodeRemovedCallback(UnityEditor.Experimental.GraphView.Node node)
+        {
+            if (node is BeatNode beatNode)
+            {
+                _story.RemoveBeat(beatNode.GUID);
+
+                if (_story.StartingBeat == beatNode.GUID) _story.StartingBeat = string.Empty;
+
+                EditorUtility.SetDirty(_story);
+         
+                Refresh();
+            }
+
+        }
 
         private void EdgeCreatedCallback(Edge edge)
         {
-
-            if (edge.output.node is StartNode<QuestNode>)
+            if (edge.output.node is StartNode<BeatNode>)
             {
-                typeof(Story).GetField("_startingQuest", BindingFlags.NonPublic | BindingFlags.Instance).SetValue(_story, ((QuestNode)edge.input.node).Quest);
+                _story.StartingBeat = edge.input.viewDataKey;
                 EditorUtility.SetDirty(_story);
-                AssetDatabase.SaveAssets();
             }
 
-            if (edge.output.node is QuestNode)
-            {
-                var quest = ((QuestNode)edge.output.node).Quest;
-                quest.SetPortInputGuid(edge.output.viewDataKey, ((QuestNode)edge.input.node).GUID);
-                EditorUtility.SetDirty(quest);
-            }
+            _story.Connections[edge.output.viewDataKey] = edge.input.viewDataKey;
+            EditorUtility.SetDirty(_story);
 
         }
         private void EdgeRemovedCallback(Edge edge)
         {
-            if (edge.output.node is StartNode<QuestNode>)
+            if (edge.output.node is StartNode<BeatNode>)
             {
-                typeof(Story).GetField("_startingQuest", BindingFlags.NonPublic | BindingFlags.Instance).SetValue(_story, null);
+                _story.StartingBeat = string.Empty;
                 EditorUtility.SetDirty(_story);
-                AssetDatabase.SaveAssets();
+                return;
             }
 
-            if (edge.output.node is QuestNode)
+            _story.Connections.Remove(edge.output.viewDataKey);
+            EditorUtility.SetDirty(_story);
+        }
+
+        private void NodeUnselectedCallback(BasicNode node)
+        {
+            _editor.Inspect(null, null);
+        }
+
+        private void NodeSelectedCallback(BasicNode node)
+        {
+            if (node is IInspectable inspectable)
             {
-                var quest = ((QuestNode)edge.output.node).Quest;
-                quest.SetPortInputGuid(edge.output.viewDataKey, "");
-                EditorUtility.SetDirty(quest);
+                _editor.Inspect(inspectable.InspectorTitle, inspectable.GetInspector());
             }
         }
 
         public void Refresh()
         {
-            _questList.Clear();
-
-            var quests = _story.Quests;
-            if (quests == null) return;
-            for (int i = 0; i < quests.Count; i++)
-            {
-                _questList.Add(CreateQuestButtonVisualElement(quests[i]));
-            }
-
             RefreshNodes();
             RefreshConnections();
         }
@@ -103,74 +109,70 @@ namespace Moths.StoryCreator.Editor.Graphs
         {
             _graphView.ClearNodes();
 
-            StartNode<QuestNode> startNode = new();
+            var startNode = new StartNode<BeatNode>("Story Start");
             _graphView.AddNode(startNode);
 
-            foreach(var quest in _story.Quests)
-            {
-                QuestNode questNode = new QuestNode(quest);
-                _graphView.AddNode(questNode);
-            }
+            var graphNode = _editor.Graph.FindNodeByGuid(EndNode<BeatNode>.GUID, out var isNew);
+            var endNode = new EndNode<BeatNode>(graphNode, "Story End");
+            _graphView.AddNode(endNode);
 
+            foreach(var beat in _story.Beats)
+            {
+                graphNode = _editor.Graph.FindNodeByGuid(beat.Guid, out isNew);
+
+                if (isNew) graphNode.position = _graphView.GetViewportCenter();
+
+                var beatNode = new BeatNode(_story, graphNode, beat);
+
+                var b = beat;
+                beatNode.EditClicked += () => _editor.OpenGraph<BeatGraph, StoryBeat>(b);
+
+                _graphView.AddNode(beatNode);
+            }
         }
 
         private void RefreshConnections()
         {
             _graphView.ClearEdges();
 
-            if (_story.StartingQuest)
+            if (!string.IsNullOrEmpty(_story.StartingBeat))
             {
-                _graphView.LinkNodes(StartNode<QuestNode>.OUTPUT_GUID, _story.StartingQuest.Guid);
+                if (_graphView.GetNodeByGUID(_story.StartingBeat) == null)
+                {
+                    _story.StartingBeat = string.Empty;
+                    _editor.SetAssetDirty();
+                }
+                else
+                {
+                    _graphView.LinkNodes(StartNode<BeatNode>.GUID, _story.StartingBeat);
+                }
             }
 
-            foreach (var quest in _story.Quests)
+            foreach (var connection in _story.Connections)
             {
-                if (quest.Ports == null) continue;
-                for (int i = 0; i < quest.Ports.Count; i++)
+                var output = connection.key;
+                var input = connection.value;
+
+                try
                 {
-                    var port = quest.Ports[i];
-                    if (string.IsNullOrEmpty(port.inputGuid)) continue;
-                    _graphView.LinkNodes(port.guid, port.inputGuid);
+                    _graphView.LinkNodes(output, input);
+                }
+                catch
+                {
+
                 }
             }
         }
 
-        private VisualElement CreateQuestButtonVisualElement(Quest quest)
-        {
-            VisualElement element = new();
-            element.AddToClassList("quest-btn");
-            element.Add(new Button(() =>
-            {
-                _editor.OpenGraph<QuestGraph>(quest);
-            })
-            {
-                text = quest.Title,
-            });
-            return element;
-        }
-
         private void NewQuestCallback()
         {
-            Quest newQuest = ScriptableObject.CreateInstance<Quest>();
-            newQuest.name = "New Quest";
-            AssetDatabase.AddObjectToAsset(newQuest, _story);
-            EditorUtility.SetDirty(newQuest);
+            StoryBeat beat = new StoryBeat(Guid.NewGuid().ToString());
 
-            List<Quest> quests = (List<Quest>)typeof(Story).GetField("_quests", BindingFlags.NonPublic | BindingFlags.Instance).GetValue(_story);
+            _story.AddBeat(beat);
 
-            quests.Add(newQuest);
-
-            EditorUtility.SetDirty(_story);
-
-            AssetDatabase.SaveAssets();
+            _editor.SetAssetDirty();
 
             Refresh();
-        }
-
-        private void SaveStoryObject()
-        {
-            EditorUtility.SetDirty(_story);
-            AssetDatabase.SaveAssetIfDirty(_story);
         }
 
     }

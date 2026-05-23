@@ -1,28 +1,26 @@
 using Moths.Graphs.Editor;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Reflection;
-using UnityEditor;
 using UnityEditor.Experimental.GraphView;
-using UnityEditor.UIElements;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 namespace Moths.Stories.Editor.Graphs.Nodes
 {
     [System.Serializable]
-    public class StartNode<TTargetType> : BasicNode
+    public class EndNode<TTargetType> : BasicNode
     {
-        public new const string GUID = "$$START_NODE";
+        public new const string GUID = "__STORY_END__";
 
-        public StartNode(string title) 
+        private Node _node;
+
+        public EndNode(Node node, string title)
         {
+            _node = node;
+
             base.title = title;
             base.GUID = GUID;
+
+            base.position = node.position;
         }
 
-        public override bool IsMovable() => false;
         public override bool IsCopiable() => false;
 
         public override void GeneratePorts()
@@ -31,11 +29,19 @@ namespace Moths.Stories.Editor.Graphs.Nodes
             outputContainer.Clear();
             extensionContainer.Clear();
 
-            var p = InstantiatePort(Orientation.Horizontal, Direction.Output, Port.Capacity.Single, typeof(TTargetType));
+            var p = InstantiatePort(Orientation.Horizontal, Direction.Input, Port.Capacity.Single, typeof(TTargetType));
             p.portName = "";
             p.viewDataKey = GUID;
             outputContainer.Add(p);
 
+        }
+
+        public override void SetPosition(Rect newPos)
+        {
+            base.SetPosition(newPos);
+
+            _node.position = newPos.position;
+            _node.Update();
         }
     }
 }

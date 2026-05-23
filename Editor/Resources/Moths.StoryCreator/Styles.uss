@@ -66,6 +66,15 @@ Sidebar {
 	background-color: var(--window-active-color);
 }
 
+.inspector {
+	width: 400px;
+}
+
+.right-align {
+    position: absolute;
+    right: 0;
+}
+
 .sidebar-title {
 	margin: 5px;
 	font-size: 18px;

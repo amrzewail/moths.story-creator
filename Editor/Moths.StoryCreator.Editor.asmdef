@@ -2,6 +2,7 @@
     "name": "Moths.StoryCreator.Editor",
     "rootNamespace": "",
     "references": [
+        "GUID:3c4641a474dbe544aafa49297e96ae9e",
         "GUID:be4aba4923dfe824f99c081ed484c6fd",
         "GUID:b7a795824752b5b4982f375797ed8b57"
     ],

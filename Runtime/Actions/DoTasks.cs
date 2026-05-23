@@ -3,32 +3,34 @@ using UnityEngine;
 
 namespace Moths.Stories.Actions
 {
+    [StoryAction("Do Tasks")]
     public class DoTasks : StoryAction
     {
         [SerializeField] InterfaceReference<ITask>[] _tasks;
 
-        public override string[] GenerateOutcomes()
+        protected override Output[] GenerateOutputs()
         {
-            return new string[] { "Then" };
+            return new Output[] { new("Then") };
         }
 
-        public override void Prepare()
+        public override void Prepare(StoryBeat beat, StoryContext.BeatContext beatContext)
         {
+
         }
 
 
-        public override void CleanUp()
+        public override void CleanUp(StoryBeat beat, StoryContext.BeatContext beatContext)
         {
         }
 
-        public override ActionOutcome Run()
+        public override ActionOutput Run(StoryBeat beat, StoryContext.BeatContext beatContext)
         {
             for (int i = 0; i < _tasks.Length; i++)
             {
                 _tasks[i].Value.Do();
             }
 
-            return GetOutcomeByID("Then");
+            return GetOutputByID("Then");
         }
     }
 }

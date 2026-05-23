@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace Moths.StoryCreator.Editor.VisualElements
+namespace Moths.Stories.Editor.VisualElements
 {
     public class Sidebar : VisualElement
     {

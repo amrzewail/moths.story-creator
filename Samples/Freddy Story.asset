@@ -1,0 +1,260 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b2724e131c14a34d89dbd477ca0b051, type: 3}
+  m_Name: Freddy Story
+  m_EditorClassIdentifier: Moths.StoryCreator::Moths.Stories.Story
+  _guid: ba497d29-4a44-4e76-b278-c29818f814d6
+  _name: Freddy Story
+  _description: "Fredrick Willem, simply known as Freddy, was born in the year 483
+    AC. He was the first child of Coastenveil bearing the \u201Cwhite marks\u201D.
+    He works as an apprentice carpenter."
+  _starter:
+    _object:
+      rid: -2
+  _startingBeat: 95c43a78-52b6-41e8-b408-80c0ca1d89e2
+  _beats:
+  - _guid: 95c43a78-52b6-41e8-b408-80c0ca1d89e2
+    _name: New Wooden Sword
+    _startingAction: 85b37a50-a4b3-4810-abcb-323ffc833c8f
+    _actions:
+    - _object:
+        rid: 7437749194434281542
+    - _object:
+        rid: 7437749194434281549
+    - _object:
+        rid: 7437749194434281550
+    - _object:
+        rid: 7437749194434281551
+    - _object:
+        rid: 7437749194434281552
+    _outcomes:
+    - name: Success
+      guid: 02f85ba8-d628-4ef7-a360-874757d2db39
+    _actionMappings:
+      _pairs:
+      - key: 3b210d06-87d3-4118-9af9-dce3cda773fe
+        value: 42f3d655-4b56-44d1-b751-311873e7e1df
+      - key: da3000af-cdc5-4833-92e5-86809f8ad139
+        value: 9050141a-14e3-4bb7-996f-c20cbe3a0ebf
+      - key: b30ecbf3-4f0f-4aca-8105-7014c3edcd5f
+        value: 90ef095f-1f24-418b-9ee6-36f94a717857
+      - key: 74e34a3c-4889-4304-94cb-a87ab930b464
+        value: 0c8150dc-11f6-4485-b7ff-c97354d8cd4c
+  - _guid: ea9acd3e-6346-4a39-9c80-093e0b25a684
+    _name: Island Adventure
+    _startingAction: 0eaf4639-830f-4e50-8c51-972cd4949707
+    _actions:
+    - _object:
+        rid: 7437749194434281545
+    _outcomes:
+    - name: Success
+      guid: 9537296e-1c69-4bf5-9462-e97b05c47050
+    _actionMappings:
+      _pairs:
+      - key: 22462c12-d59d-4d96-a128-60e72ff1e4a1
+        value: 9537296e-1c69-4bf5-9462-e97b05c47050
+  - _guid: 297c525a-775d-480f-92c3-7605ce01ef92
+    _name: Revisting Memories
+    _startingAction: 5a758784-7763-465b-b6ac-9976b142d70b
+    _actions:
+    - _object:
+        rid: 7437749194434281547
+    _outcomes:
+    - name: Success
+      guid: 0badc52e-1a77-494f-9c96-2892d45a8c99
+    _actionMappings:
+      _pairs:
+      - key: 4bca3104-c42b-4670-b59a-f9f66ed9a11b
+        value: 0badc52e-1a77-494f-9c96-2892d45a8c99
+  _connections:
+    _pairs:
+    - key: $$START_NODE
+      value: 95c43a78-52b6-41e8-b408-80c0ca1d89e2
+    - key: 9537296e-1c69-4bf5-9462-e97b05c47050
+      value: 297c525a-775d-480f-92c3-7605ce01ef92
+    - key: 0badc52e-1a77-494f-9c96-2892d45a8c99
+      value: __STORY_END__
+    - key: 02f85ba8-d628-4ef7-a360-874757d2db39
+      value: ea9acd3e-6346-4a39-9c80-093e0b25a684
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 7437749194434281542
+      type: {class: DoTasks, ns: Moths.Stories.Actions, asm: Moths.StoryCreator}
+      data:
+        _guid: 85b37a50-a4b3-4810-abcb-323ffc833c8f
+        _name: Do Tasks
+        _outputs:
+        - id: Then
+          name: Then
+          guid: 3b210d06-87d3-4118-9af9-dce3cda773fe
+        _tasks:
+        - _object:
+            rid: 7437749194434281544
+    - rid: 7437749194434281544
+      type: {class: DebugLogTask, ns: Moths.Stories.Tasks, asm: Moths.StoryCreator}
+      data:
+        _text: New Wooden Sword Task 1
+    - rid: 7437749194434281545
+      type: {class: DoTasks, ns: Moths.Stories.Actions, asm: Moths.StoryCreator}
+      data:
+        _guid: 0eaf4639-830f-4e50-8c51-972cd4949707
+        _name: Island Adventure Log Tasks
+        _outputs:
+        - id: Then
+          name: Then
+          guid: 22462c12-d59d-4d96-a128-60e72ff1e4a1
+        _tasks:
+        - _object:
+            rid: 7437749194434281546
+    - rid: 7437749194434281546
+      type: {class: DebugLogTask, ns: Moths.Stories.Tasks, asm: Moths.StoryCreator}
+      data:
+        _text: Island Adventure
+    - rid: 7437749194434281547
+      type: {class: DoTasks, ns: Moths.Stories.Actions, asm: Moths.StoryCreator}
+      data:
+        _guid: 5a758784-7763-465b-b6ac-9976b142d70b
+        _name: Do Tasks
+        _outputs:
+        - id: Then
+          name: Then
+          guid: 4bca3104-c42b-4670-b59a-f9f66ed9a11b
+        _tasks:
+        - _object:
+            rid: 7437749194434281548
+    - rid: 7437749194434281548
+      type: {class: DebugLogTask, ns: Moths.Stories.Tasks, asm: Moths.StoryCreator}
+      data:
+        _text: Revisit Memories Task
+    - rid: 7437749194434281549
+      type: {class: AnyAction, ns: Moths.Stories.Actions, asm: Moths.StoryCreator}
+      data:
+        _guid: 42f3d655-4b56-44d1-b751-311873e7e1df
+        _name: Any Action
+        _outputs:
+        - id: 0
+          name: 0
+          guid: da3000af-cdc5-4833-92e5-86809f8ad139
+        - id: 1
+          name: 1
+          guid: b30ecbf3-4f0f-4aca-8105-7014c3edcd5f
+        - id: 2
+          name: 2
+          guid: 74e34a3c-4889-4304-94cb-a87ab930b464
+        - id: 3
+          name: 3
+          guid: 18c2ea23-719c-49ed-af91-19359a7d300e
+        _count: 4
+    - rid: 7437749194434281550
+      type: {class: DoTasks, ns: Moths.Stories.Actions, asm: Moths.StoryCreator}
+      data:
+        _guid: 9050141a-14e3-4bb7-996f-c20cbe3a0ebf
+        _name: Do Tasks
+        _outputs:
+        - id: Then
+          name: Then
+          guid: f6fa6892-86e9-441c-b437-6822bba985d3
+        _tasks: []
+    - rid: 7437749194434281551
+      type: {class: DoTasks, ns: Moths.Stories.Actions, asm: Moths.StoryCreator}
+      data:
+        _guid: 90ef095f-1f24-418b-9ee6-36f94a717857
+        _name: Do Tasks
+        _outputs:
+        - id: Then
+          name: Then
+          guid: 2415778a-9b59-4a39-afc2-a79e696746e5
+        _tasks: []
+    - rid: 7437749194434281552
+      type: {class: DoTasks, ns: Moths.Stories.Actions, asm: Moths.StoryCreator}
+      data:
+        _guid: 0c8150dc-11f6-4485-b7ff-c97354d8cd4c
+        _name: Do Tasks
+        _outputs:
+        - id: Then
+          name: Then
+          guid: 5a277053-aaf0-4b84-a371-49d657556692
+        _tasks: []
+--- !u!114 &8447781867797993902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7cceb313d471064ca146b807ec81313, type: 3}
+  m_Name: Graph
+  m_EditorClassIdentifier: Moths.StoryCreator.Editor::Moths.Stories.Editor.StoryGraphProperties
+  _nodes:
+  - guid: 95c43a78-52b6-41e8-b408-80c0ca1d89e2
+    position: {x: 204, y: -23}
+  - guid: ddf575f2-5f04-4e8e-a09b-90f19ac10b8a
+    position: {x: 449, y: 208}
+  - guid: f99ba082-73fd-4a67-9a69-7d93388c2e5b
+    position: {x: 449, y: 49}
+  - guid: 95c43a78-52b6-41e8-51fk-80c0ca1d89e2
+    position: {x: 543, y: 118}
+  - guid: a91e4096-d711-4a4b-8a97-f34c3abb8bb5
+    position: {x: 209, y: 286}
+  - guid: 02f85ba8-d628-4ef7-a360-874757d2db39
+    position: {x: 835, y: 39}
+  - guid: 803b7a7b-7ba8-4431-bf19-932825ea7049
+    position: {x: 0, y: 0}
+  - guid: e5d4d292-1e1a-4aff-a01b-e16023e6c498
+    position: {x: -169, y: 82}
+  - guid: a5785f82-80c2-418c-a4e0-d18d6db545a1
+    position: {x: -42, y: 159}
+  - guid: 906cb5e3-7565-4a23-b0cf-9e6c2fe0b210
+    position: {x: 63.5, y: 236}
+  - guid: a38a8c7d-0989-41be-b15e-5b5d3fc31e2e
+    position: {x: 364, y: 329}
+  - guid: c6c839ee-d266-46c5-b401-808279f76ee5
+    position: {x: 409, y: 115}
+  - guid: 3873ee82-a8ef-4965-9e28-77525e43bb32
+    position: {x: 138, y: 106}
+  - guid: 0ca4100b-0b59-4a79-893c-c280521f3a20
+    position: {x: 347, y: 229.5}
+  - guid: 0a7e757e-ddba-420a-bc9f-ee8c951e9574
+    position: {x: 230, y: 38.5}
+  - guid: 85b37a50-a4b3-4810-abcb-323ffc833c8f
+    position: {x: 148.5, y: -11}
+  - guid: ea9acd3e-6346-4a39-9c80-093e0b25a684
+    position: {x: 432, y: -13}
+  - guid: 8a3a0a81-6989-4039-92a3-7b29da54ee6d
+    position: {x: 571, y: -86}
+  - guid: __STORY_END__
+    position: {x: 883, y: 77}
+  - guid: 9537296e-1c69-4bf5-9462-e97b05c47050
+    position: {x: 542, y: 38.5}
+  - guid: 297c525a-775d-480f-92c3-7605ce01ef92
+    position: {x: 665, y: 25.5}
+  - guid: 0badc52e-1a77-494f-9c96-2892d45a8c99
+    position: {x: 397, y: 0}
+  - guid: 0a630df2-82fa-43a6-acdb-4135e2057511
+    position: {x: 229, y: 118}
+  - guid: 0eaf4639-830f-4e50-8c51-972cd4949707
+    position: {x: 209, y: 16}
+  - guid: 5a758784-7763-465b-b6ac-9976b142d70b
+    position: {x: 198, y: 0}
+  - guid: 42f3d655-4b56-44d1-b751-311873e7e1df
+    position: {x: 383, y: 0}
+  - guid: 9050141a-14e3-4bb7-996f-c20cbe3a0ebf
+    position: {x: 573, y: -61}
+  - guid: 90ef095f-1f24-418b-9ee6-36f94a717857
+    position: {x: 585, y: 27.5}
+  - guid: 0c8150dc-11f6-4485-b7ff-c97354d8cd4c
+    position: {x: 585, y: 116}
