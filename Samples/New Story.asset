@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2268c302af7794b4f9fbe6f82e188c09, type: 3}
+  m_Name: New Story
+  m_EditorClassIdentifier: Moths.StoryCreator::Moths.StoryCreator.ScriptableObjects.Story
+  _title: New Element
+  _graphElements: []
+  Guid: 7ee6ac43-bd31-4c22-b1be-49a19ceadd3a
+  Position: {x: 0, y: 0}
+  Ports: []
+  _quests: []
+  _startingQuest: {fileID: 0}
