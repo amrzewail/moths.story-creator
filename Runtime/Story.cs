@@ -29,11 +29,11 @@ namespace Moths.Stories
         [SerializeField, HideInInspector] string _guid;
         [SerializeField] string _name;
         [SerializeField, TextArea(2, 5)] string _description;
-        [SerializeField, HideInInspector] InterfaceReference<IStoryStarter> _starter;
+        [SerializeField, HideInInspector] InterfaceReference<IStoryStarter> _starter = new(null);
 
         [SerializeField, HideInInspector] string _startingBeat;
-        [SerializeField, HideInInspector] List<StoryBeat> _beats;
-        [SerializeField, HideInInspector] SerializableDictionary<string, string> _connections;
+        [SerializeField, HideInInspector] List<StoryBeat> _beats = new();
+        [SerializeField, HideInInspector] SerializableDictionary<string, string> _connections = new();
 
         public string Name => _name;
         public string Description => _description;

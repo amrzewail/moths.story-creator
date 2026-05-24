@@ -27,7 +27,7 @@ namespace Moths.Stories.Editor
 
     public class StoryGraphProperties : ScriptableObject
     {
-        [SerializeField] List<Node> _nodes;
+        [SerializeField, HideInInspector] List<Node> _nodes = new();
 
         public IReadOnlyList<Node> Nodes => _nodes;
 

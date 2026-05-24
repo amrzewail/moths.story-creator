@@ -37,4 +37,8 @@ MonoBehaviour:
         v1: 0
         v2: 0
       description: '- Initial release'
+    samples:
+    - displayName: Sample 1
+      description: 
+      path: Samples~
     license: 0
