@@ -2,12 +2,15 @@ using Moths.Graphs.Editor;
 using Moths.Stories.Actions.Editor;
 using Moths.Stories.Editor.Graphs;
 using System;
+using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
+using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
+using static UnityEditor.EditorGUI;
 
 namespace Moths.Stories.Editor
 {
@@ -90,56 +93,94 @@ namespace Moths.Stories.Editor
                     .SelectMany(a => a.GetTypes())
                     .FirstOrDefault(t => t.IsClass && !t.IsAbstract && baseInspectorType.IsAssignableFrom(t));
 
+                var property = GetSerializedProperty();
+
                 if (customInspectorType != null)
                 {
-                    int beatIndex = -1;
-                    for (int i = 0; i < _story.Beats.Count; i++)
-                    {
-                        if (_story.Beats[i] == _beat)
-                        {
-                            beatIndex = i;
-                            break;
-                        }
-                    }
-
-                    int actionIndex = -1;
-                    for (int i = 0; i < _beat.Actions.Count; i++)
-                    {
-                        if (_beat.Actions[i].Value == _action)
-                        {
-                            actionIndex = i;
-                            break;
-                        }
-                    }
-
-                    // 4. Instantiate the found inspector class
                     object inspectorInstance = Activator.CreateInstance(customInspectorType);
 
-                    // 5. Set the private '_story' field
-                    // Note: Because '_story' is private, we MUST reflect on the base class where it is declared
                     FieldInfo storyField = baseInspectorType.GetField("_story", BindingFlags.NonPublic | BindingFlags.Instance);
                     if (storyField != null)
                     {
                         storyField.SetValue(inspectorInstance, _story);
                     }
 
-                    // 6. Call the UpdateInspector method
                     MethodInfo updateMethod = baseInspectorType.GetMethod("UpdateInspector");
                     if (updateMethod != null)
                     {
-                        SerializedObject serializedObject = new SerializedObject(_story);
-                        var property = serializedObject.FindProperty($"_beats")
-                            .GetArrayElementAtIndex(beatIndex)
-                            .FindPropertyRelative("_actions")
-                            .GetArrayElementAtIndex(actionIndex)
-                            .FindPropertyRelative("_object");
-
                         updateMethod.Invoke(inspectorInstance, new object[] { inspector, property, this });
                     }
+                }
+                else
+                {
+                    DrawManagedReferenceFieldsViaReflection(inspector, property);
                 }
             }
 
             return inspector;
+        }
+
+        private void DrawManagedReferenceFieldsViaReflection(VisualElement container, SerializedProperty managedProperty)
+        {
+            container.Clear();
+
+            object targetObject = managedProperty.managedReferenceValue;
+
+            if (targetObject == null) return;
+
+            System.Type type = targetObject.GetType();
+
+            FieldInfo[] fields = type.GetFields(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+
+            foreach (FieldInfo fieldInfo in fields)
+            {
+                bool isPublic = fieldInfo.IsPublic;
+                bool hasSerializeField = fieldInfo.GetCustomAttribute<SerializeField>() != null;
+
+                if (isPublic || hasSerializeField)
+                {
+                    SerializedProperty childProperty = managedProperty.FindPropertyRelative(fieldInfo.Name);
+
+                    if (childProperty != null)
+                    {
+                        PropertyField uiField = new PropertyField(childProperty);
+                        uiField.BindProperty(managedProperty.serializedObject);
+                        container.Add(uiField);
+                    }
+                }
+            }
+        }
+
+        private SerializedProperty GetSerializedProperty()
+        {
+            int beatIndex = -1;
+            for (int i = 0; i < _story.Beats.Count; i++)
+            {
+                if (_story.Beats[i] == _beat)
+                {
+                    beatIndex = i;
+                    break;
+                }
+            }
+
+            int actionIndex = -1;
+            for (int i = 0; i < _beat.Actions.Count; i++)
+            {
+                if (_beat.Actions[i].Value == _action)
+                {
+                    actionIndex = i;
+                    break;
+                }
+            }
+
+            SerializedObject serializedObject = new SerializedObject(_story);
+            var property = serializedObject.FindProperty($"_beats")
+                .GetArrayElementAtIndex(beatIndex)
+                .FindPropertyRelative("_actions")
+                .GetArrayElementAtIndex(actionIndex)
+                .FindPropertyRelative("_object");
+
+            return property;
         }
 
         public override void SetPosition(Rect newPos)

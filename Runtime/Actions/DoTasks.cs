@@ -4,6 +4,7 @@ using UnityEngine;
 namespace Moths.Stories.Actions
 {
     [StoryAction("Do Tasks", icon: "icons/act_do_tasks")]
+    [System.Serializable]
     public class DoTasks : StoryAction
     {
         [SerializeField] InterfaceReference<ITask>[] _tasks;
