@@ -29,7 +29,7 @@ namespace Moths.Stories
         [SerializeField, HideInInspector] string _guid;
         [SerializeField] string _name;
         [SerializeField, TextArea(2, 5)] string _description;
-        [SerializeField] InterfaceReference<IStoryStarter> _starter;
+        [SerializeField, HideInInspector] InterfaceReference<IStoryStarter> _starter;
 
         [SerializeField, HideInInspector] string _startingBeat;
         [SerializeField, HideInInspector] List<StoryBeat> _beats;
@@ -53,12 +53,30 @@ namespace Moths.Stories
 
         public void StartStory(ref StoryContext context)
         {
+#if UNITY_EDITOR
+            Debug.Log($"[Story] Start story {Name}");
+#endif
+
+            if (_startingBeat == "__STORY_END__")
+            {
+                context.currentBeat.beatGuid = _startingBeat;
+                return;
+            }
+
             StartBeat(ref context, _startingBeat);
         }
 
         public StoryOutcome Run(ref StoryContext context)
         {
             if (string.IsNullOrEmpty(context.currentBeat.beatGuid)) return StoryOutcome.Pending;
+
+            if (context.currentBeat.beatGuid == "__STORY_END__")
+            {
+#if UNITY_EDITOR
+                Debug.Log($"[Story] Complete story {Name}");
+#endif
+                return StoryOutcome.Complete;
+            }
 
             var beat = FindBeat(context.currentBeat.beatGuid);
 
@@ -72,10 +90,17 @@ namespace Moths.Stories
 
             if (!string.IsNullOrEmpty(outcome.guid))
             {
+#if UNITY_EDITOR
+                Debug.Log($"[Story] End beat {beat.Name}");
+#endif
+
                 var nextBeat = _connections[outcome.guid];
 
                 if (nextBeat == "__STORY_END__")
                 {
+#if UNITY_EDITOR
+                    Debug.Log($"[Story] Complete story {Name}");
+#endif
                     return StoryOutcome.Complete;
                 }
 
@@ -98,6 +123,10 @@ namespace Moths.Stories
 
             if (context.currentBeat.currentActions == null) context.currentBeat.currentActions = new();
             if (context.currentBeat.completedActions == null) context.currentBeat.completedActions = new();
+
+#if UNITY_EDITOR
+            Debug.Log($"[Story] Start beat {beat.Name}");
+#endif
 
             context.currentBeat.beatGuid = beatGuid;
 

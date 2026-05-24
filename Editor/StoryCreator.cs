@@ -13,12 +13,11 @@ namespace Moths.Stories.Editor
 
     public class StoryCreator : EditorWindow
     {
-        private HistoryStack _history;
+        [SerializeField] Story _story;
+        [SerializeField] StoryGraphProperties _properties;
 
         private VisualElement _graphs;
-
-        private Story _story;
-        private StoryGraphProperties _properties;
+        private HistoryStack _history;
         private Sidebar _nodeInspector;
 
         public HistoryStack History => _history;
@@ -50,6 +49,11 @@ namespace Moths.Stories.Editor
             rootVisualElement.Add(_history);
 
             rootVisualElement.Add(_nodeInspector);
+
+            if (_story)
+            {
+                OpenGraph<StoryGraph, Story>(_story);
+            }
         }
 
         public void OpenGraph<T, TData>(TData data) where T : BaseGraph<TData>

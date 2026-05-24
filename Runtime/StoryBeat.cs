@@ -1,6 +1,7 @@
 using Moths.Collections;
 using Moths.Serialization;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Moths.Stories
@@ -38,6 +39,19 @@ namespace Moths.Stories
 
         public BeatOutcome Run(Story story, StoryContext.BeatContext context)
         {
+            for (int i = 0; i < _outcomes.Count; i++)
+            {
+                var outcome = _outcomes[i];
+                if (!context.currentActions.Contains(outcome.guid)) continue;
+                foreach (var actionGuid in context.currentActions)
+                {
+                    var currAction = FindAction(actionGuid);
+                    if (currAction == null) continue;
+                    currAction.CleanUp(this, context);
+                }
+                return outcome;
+            }
+
             for (int i = 0; i < _actions.Count; i++)
             {
                 var action = _actions[i].Value;
@@ -48,6 +62,9 @@ namespace Moths.Stories
 
                 if (string.IsNullOrEmpty(output.guid)) continue;
 
+#if UNITY_EDITOR
+                Debug.Log($"[Story] Complete action {Name}: {action.Name}");
+#endif
                 action.CleanUp(this, context);
                 context.currentActions.Remove(action.Guid);
                 context.completedActions.Add(action.Guid);
@@ -62,6 +79,7 @@ namespace Moths.Stories
                     foreach(var actionGuid in context.currentActions)
                     {
                         var currAction = FindAction(actionGuid);
+                        if (currAction == null) continue;
                         currAction.CleanUp(this, context);
                     }
                     return nextBeat;
@@ -86,6 +104,9 @@ namespace Moths.Stories
                     return;
                 }
 
+#if UNITY_EDITOR
+                Debug.Log($"[Story] Start action {Name}: {action.Name}");
+#endif
                 context.currentActions.Add(actionGuid);
                 action.Prepare(this, context);
             }

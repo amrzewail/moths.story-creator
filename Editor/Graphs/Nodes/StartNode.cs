@@ -12,6 +12,33 @@ using UnityEngine.UIElements;
 namespace Moths.Stories.Editor.Graphs.Nodes
 {
     [System.Serializable]
+    public class StoryStartNode : StartNode<BeatNode>, IInspectable
+    {
+        private Story _story;
+        public StoryStartNode(Story story, string title) : base(title)
+        {
+            _story = story;
+        }
+
+        public string InspectorTitle => "Story Start";
+
+        public VisualElement GetInspector()
+        {
+            var inspector = new VisualElement();
+
+            var serializedObject = new SerializedObject(_story);
+
+            var starterProperty = serializedObject.FindProperty("_starter");
+            var starterElement = new PropertyField(starterProperty);
+            starterElement.Bind(serializedObject);
+
+            inspector.Add(starterElement);
+
+            return inspector;
+        }
+    }
+
+    [System.Serializable]
     public class StartNode<TTargetType> : BasicNode
     {
         public new const string GUID = "$$START_NODE";

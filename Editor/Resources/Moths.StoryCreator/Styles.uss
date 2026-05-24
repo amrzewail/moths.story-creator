@@ -58,7 +58,7 @@ Button:active
 
 Sidebar {
 	height: 100%;
-	width: 250px;
+	width: 300px;
 	margin: 5px;
 	border-width: 1px;
 	border-color: var(--light);
@@ -73,6 +73,7 @@ Sidebar {
 .right-align {
     position: absolute;
     right: 0;
+	height: 75%;
 }
 
 .sidebar-title {
@@ -86,8 +87,9 @@ Sidebar Category {
 	width: 100%;
 	padding: 5px;
 	height: auto;
-	border-radius: var(--border-radius);
-	border-width: 1px;
+
+    border-top-width: 1px;
+    border-top-color: gray;
 }
 
 Sidebar Category .content {
@@ -114,7 +116,7 @@ HistoryStack {
 	width: 100%;
 	height: 20px;
 	margin: 5px;
-	margin-left: 255px;
+	margin-left: 305px;
 	flex-direction: row;
 }
 
@@ -147,7 +149,19 @@ HistoryStack Button
 	height: 100%;
 }
 
+.action-btn {
+	height: 50px;
+	width: 50px;
+	margin: 5px;
+}
 
+.action-btn .unity-image{
+	position: absolute;
+	right: 0px;
+	left: 0px;
+	bottom: 0px;
+	top: 0px;
+}
 	
 .quest-element {
 	width: 70px;

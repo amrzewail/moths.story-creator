@@ -25,11 +25,11 @@ namespace Moths.Stories.Editor.Graphs
             Sidebar sidebar = new Sidebar();
             sidebar.title = _story.Name;
 
-            var editCategory = sidebar.AddCategory("Edit");
+            var editCategory = sidebar.AddCategory("BEATS");
 
             Button newBeatBtn = new Button();
             newBeatBtn.AddToClassList("new-quest-btn");
-            newBeatBtn.text = "NEW BEAT";
+            newBeatBtn.text = "New Beat";
             newBeatBtn.clicked += NewQuestCallback;
 
             editCategory.Content.Add(newBeatBtn);
@@ -62,7 +62,7 @@ namespace Moths.Stories.Editor.Graphs
 
         private void EdgeCreatedCallback(Edge edge)
         {
-            if (edge.output.node is StartNode<BeatNode>)
+            if (edge.output.node is StoryStartNode)
             {
                 _story.StartingBeat = edge.input.viewDataKey;
                 EditorUtility.SetDirty(_story);
@@ -74,7 +74,7 @@ namespace Moths.Stories.Editor.Graphs
         }
         private void EdgeRemovedCallback(Edge edge)
         {
-            if (edge.output.node is StartNode<BeatNode>)
+            if (edge.output.node is StoryStartNode)
             {
                 _story.StartingBeat = string.Empty;
                 EditorUtility.SetDirty(_story);
@@ -109,7 +109,7 @@ namespace Moths.Stories.Editor.Graphs
         {
             _graphView.ClearNodes();
 
-            var startNode = new StartNode<BeatNode>("Story Start");
+            var startNode = new StoryStartNode(_story, "Story Start");
             _graphView.AddNode(startNode);
 
             var graphNode = _editor.Graph.FindNodeByGuid(EndNode<BeatNode>.GUID, out var isNew);
@@ -144,7 +144,7 @@ namespace Moths.Stories.Editor.Graphs
                 }
                 else
                 {
-                    _graphView.LinkNodes(StartNode<BeatNode>.GUID, _story.StartingBeat);
+                    _graphView.LinkNodes(StoryStartNode.GUID, _story.StartingBeat);
                 }
             }
 

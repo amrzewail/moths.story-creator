@@ -37,7 +37,6 @@ namespace Moths.Stories
                         _contexts[story] = context;
                     }
                 }
-
             }
         }
     }

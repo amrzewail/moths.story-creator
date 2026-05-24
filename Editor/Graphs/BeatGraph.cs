@@ -4,6 +4,7 @@ using Moths.Stories.Editor;
 using Moths.Stories.Editor.Graphs.Nodes;
 using Moths.Stories.Editor.VisualElements;
 using System;
+using System.Linq;
 using System.Reflection;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
@@ -17,13 +18,15 @@ namespace Moths.Stories.Editor.Graphs
         private StoryCreator _editor;
         private StoryBeat _beat;
 
+        private Sidebar _sidebar;
+
         public override void Initialize(StoryCreator editor, StoryBeat data)
         {
             _editor = editor;
             _beat = data;
 
-            Sidebar sidebar = new Sidebar();
-            sidebar.title = data.Name;
+            _sidebar = new Sidebar();
+            _sidebar.title = data.Name;
 
             _graphView.EdgeCreated += EdgeCreatedCallback;
             _graphView.EdgeRemoved += EdgeRemovedCallback;
@@ -31,9 +34,9 @@ namespace Moths.Stories.Editor.Graphs
             _graphView.NodeUnselected += NodeUnselectedCallback;
             _graphView.NodeRemoved += NodeRemovedCallback;
 
-            this.Add(sidebar);
+            this.Add(_sidebar);
 
-            var beatOutcomes = sidebar.AddCategory("BEAT OUTCOMES");
+            var beatOutcomes = _sidebar.AddCategory("OUTCOMES");
 
             Button newOutcomeBtn = new Button();
             newOutcomeBtn.AddToClassList("new-quest-btn");
@@ -42,17 +45,10 @@ namespace Moths.Stories.Editor.Graphs
 
             beatOutcomes.Add(newOutcomeBtn);
 
-            var beatActions = sidebar.AddCategory("BEAT ACTIONS");
-
-            Button newActionBtn = new Button();
-            newActionBtn.AddToClassList("new-quest-btn");
-            newActionBtn.text = "New Action";
-            newActionBtn.clicked += NewActionCallback;
-            beatActions.Add(newActionBtn);
+            CreateBeatActionsList();
 
             Refresh();
         }
-
 
         private void EdgeCreatedCallback(Edge edge)
         {
@@ -144,6 +140,38 @@ namespace Moths.Stories.Editor.Graphs
                 }
             }
         }
+
+        private void CreateBeatActionsList()
+        {
+            var beatActions = _sidebar.AddCategory("ACTIONS");
+
+            var types = TypeCache.GetTypesWithAttribute<StoryActionAttribute>().ToList();
+            types.Sort((x, y) => x.Name.CompareTo(y.Name));
+
+            foreach (var type in types)
+            {
+                var attr = type.GetCustomAttribute<StoryActionAttribute>();
+                string path = attr != null ? attr.path : type.Name;
+                string name = path.Split('/').Last();
+
+                Button newActionBtn = new Button();
+                newActionBtn.AddToClassList("action-btn");
+                newActionBtn.clicked += () => AddAction(type);
+
+                if (!string.IsNullOrEmpty(attr.img))
+                {
+                    newActionBtn.iconImage = Resources.Load<Texture2D>("Moths.StoryCreator/" + attr.img);
+                    newActionBtn.tooltip = name;
+                }
+                else
+                {
+                    newActionBtn.text = name;
+                }
+
+                beatActions.Content.Add(newActionBtn);
+            }
+        }
+
 
         private void NewActionCallback()
         {

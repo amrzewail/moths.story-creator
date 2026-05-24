@@ -16,10 +16,12 @@ namespace Moths.Stories
     public class StoryActionAttribute : System.Attribute
     {
         public string path { get; private set; }
+        public string img { get; private set; }
 
-        public StoryActionAttribute(string path)
+        public StoryActionAttribute(string path, string icon = null)
         {
             this.path = path;
+            this.img = icon;
         }
     }
 
