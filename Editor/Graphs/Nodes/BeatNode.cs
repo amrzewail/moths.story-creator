@@ -52,6 +52,11 @@ namespace Moths.Stories.Editor
                     outputContainer.Add(p);
                 }
             }
+
+            extensionContainer.Add(new Button(EditClicked)
+            {
+                text = "Edit"
+            });
         }
 
         public VisualElement GetInspector()

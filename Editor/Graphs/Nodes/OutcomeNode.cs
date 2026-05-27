@@ -1,5 +1,6 @@
 using Moths.Graphs.Editor;
 using Moths.Stories.Editor.Graphs;
+using System;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
@@ -15,6 +16,8 @@ namespace Moths.Stories.Editor
         private BeatOutcome _outcome;
 
         public string InspectorTitle => _outcome.name;
+
+        public event Action<Vector2> NodeMoved;
 
         public OutcomeNode(Story story, StoryBeat beat, Node node, BeatOutcome outcome)
         {
@@ -42,6 +45,8 @@ namespace Moths.Stories.Editor
 
             _node.position = newPos.position;
             _node.Update();
+
+            NodeMoved?.Invoke(newPos.position);
         }
 
         public VisualElement GetInspector()

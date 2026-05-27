@@ -74,15 +74,19 @@ namespace Moths.Stories.Editor.Graphs
         }
         private void EdgeRemovedCallback(Edge edge)
         {
-            if (edge.output.node is StoryStartNode)
+            try
             {
-                _story.StartingBeat = string.Empty;
-                EditorUtility.SetDirty(_story);
-                return;
-            }
+                if (edge.output.node is StoryStartNode)
+                {
+                    _story.StartingBeat = string.Empty;
+                    EditorUtility.SetDirty(_story);
+                    return;
+                }
 
-            _story.Connections.Remove(edge.output.viewDataKey);
-            EditorUtility.SetDirty(_story);
+                _story.Connections.Remove(edge.output.viewDataKey);
+                EditorUtility.SetDirty(_story);
+            }
+            catch { }
         }
 
         private void NodeUnselectedCallback(BasicNode node)

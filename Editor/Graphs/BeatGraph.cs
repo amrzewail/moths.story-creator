@@ -4,6 +4,7 @@ using Moths.Stories.Editor;
 using Moths.Stories.Editor.Graphs.Nodes;
 using Moths.Stories.Editor.VisualElements;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using UnityEditor;
@@ -107,6 +108,7 @@ namespace Moths.Stories.Editor.Graphs
                 if (isNew) graphNode.position = _graphView.GetViewportCenter();
                 var outcomeNode = new OutcomeNode(_editor.Story, _beat, graphNode, outcome);
                 _graphView.AddNode(outcomeNode);
+                outcomeNode.NodeMoved += OutcomeNodeMovedCallback;
             }
         }
 
@@ -240,6 +242,15 @@ namespace Moths.Stories.Editor.Graphs
                 _editor.SetAssetDirty();
                 Refresh();
             }
+        }
+
+
+        private void OutcomeNodeMovedCallback(Vector2 vector)
+        {
+            var positions = new Dictionary<string, float>();
+            _graphView.Query<OutcomeNode>().ForEach(outcome => positions[outcome.GUID] = -outcome.GetPosition().position.y);
+            _beat.SortOutcomes((a, b) => positions[b.guid].CompareTo(positions[a.guid]));
+            _editor.SetAssetDirty();
         }
 
     }

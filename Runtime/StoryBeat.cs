@@ -1,5 +1,6 @@
 using Moths.Collections;
 using Moths.Serialization;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -168,6 +169,11 @@ namespace Moths.Stories
                     return;
                 }
             }
+        }
+
+        public void SortOutcomes(Comparison<BeatOutcome> comparison)
+        {
+            _outcomes.Sort(comparison);
         }
 
         private StoryAction FindAction(string actionGuid)
