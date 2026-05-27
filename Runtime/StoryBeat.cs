@@ -129,6 +129,14 @@ namespace Moths.Stories
             }
         }
 
+        public void CleanInvalidActions()
+        {
+            for (int i = _actions.Count - 1; i >= 0; i--)
+            {
+                if (_actions[i].Value == null) _actions.RemoveAt(i);
+            }
+        }
+
         public void AddOutcome()
         {
             _outcomes.Add(new BeatOutcome

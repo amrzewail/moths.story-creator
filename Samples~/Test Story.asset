@@ -22,11 +22,11 @@ MonoBehaviour:
   _beats:
   - _guid: 12ac2cdc-9449-4efd-bb3e-ef6780e54901
     _name: An emotional arc
-    _startingAction: d5765ec2-bcd4-4222-ad87-3027bea93ab7
-    _actions: []
-    _outcomes:
-    - name: Success
-      guid: d5765ec2-bcd4-4222-ad87-3027bea93ab7
+    _startingAction: 6d34b91a-a299-4ccb-a4d8-6b3d079f5b44
+    _actions:
+    - _object:
+        rid: 7437749218014396666
+    _outcomes: []
     _actionMappings:
       _pairs: []
   _connections:
@@ -42,6 +42,22 @@ MonoBehaviour:
       type: {class: StoryTimedStarter, ns: Moths.Stories.Samples, asm: Assembly-CSharp}
       data:
         _startTime: 5
+    - rid: 7437749218014396666
+      type: {class: AllActions, ns: Moths.Stories.Actions, asm: Moths.StoryCreator}
+      data:
+        _guid: 6d34b91a-a299-4ccb-a4d8-6b3d079f5b44
+        _name: All Actions
+        _outputs:
+        - id: 0
+          name: 0
+          guid: 578b978e-f3b1-41a0-adf8-6459780328d4
+        - id: 1
+          name: 1
+          guid: 1e0432c9-8f1b-43cf-84c8-4608aa8e5d1e
+        - id: Then
+          name: Then
+          guid: f69c01d6-bf92-436e-8dfb-d9e4f0afb9a9
+        _count: 2
 --- !u!114 &8447781867797993902
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -122,10 +138,16 @@ MonoBehaviour:
   - guid: 12ac2cdc-9449-4efd-bb3e-ef6780e54901
     position: {x: 198, y: 0}
   - guid: d5765ec2-bcd4-4222-ad87-3027bea93ab7
-    position: {x: 244, y: 0}
+    position: {x: 360, y: 129}
   - guid: e442f770-d232-4298-966a-c83eab895061
     position: {x: 150, y: 77}
   - guid: 84b4e4f9-a846-4f7e-a3a5-a7053e0d12fb
     position: {x: 508, y: 238.5}
   - guid: 888a8193-7f1e-49e7-be55-c9acc0a3ca6a
     position: {x: 508, y: 189}
+  - guid: 5227dd73-c674-4ea3-8f22-09f093789a56
+    position: {x: 104, y: 105}
+  - guid: 6774bdfe-f4ed-4567-a153-e60d7f6c13e9
+    position: {x: 321, y: 260}
+  - guid: 6d34b91a-a299-4ccb-a4d8-6b3d079f5b44
+    position: {x: 230, y: 0}

@@ -90,6 +90,8 @@ namespace Moths.Stories.Editor.Graphs
             var startNode = new StartNode<ActionNode>("Beat Start");
             _graphView.AddNode(startNode);
 
+            _beat.CleanInvalidActions();
+
             foreach (var action in _beat.Actions)
             {
                 var graphNode = _editor.Graph.FindNodeByGuid(action.Value.Guid, out var isNew);
