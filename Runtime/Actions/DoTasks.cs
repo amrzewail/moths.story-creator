@@ -12,6 +12,7 @@ namespace Moths.Stories.Actions
         {
             get
             {
+                if (_tasks == null) return string.Empty;
                 List<string> descs = new();
                 foreach(var task in _tasks)
                 {
