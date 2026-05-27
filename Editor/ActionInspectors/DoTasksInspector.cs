@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 
 namespace Moths.Stories.Actions.Editor
 {
-    public class DoTasksInspector : CustomStoryActionInspector<DoTasks>
+    public class DoTasksInspector : CustomStoryActionInspector<ExecuteTasks>
     {
         public override void UpdateInspector(VisualElement inspector, SerializedProperty property, ActionNode actionNode)
         {

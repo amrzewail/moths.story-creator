@@ -4,9 +4,9 @@ using UnityEngine;
 
 namespace Moths.Stories.Actions
 {
-    [StoryAction("Do Tasks", icon: "icons/act_do_tasks")]
+    [StoryAction("Execute Tasks", icon: "icons/act_do_tasks")]
     [System.Serializable]
-    public class DoTasks : StoryAction
+    public class ExecuteTasks : StoryAction
     {
         public override string Description
         {
