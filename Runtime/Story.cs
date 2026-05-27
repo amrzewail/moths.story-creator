@@ -29,7 +29,7 @@ namespace Moths.Stories
         [SerializeField, HideInInspector] string _guid;
         [SerializeField] string _name;
         [SerializeField, TextArea(2, 5)] string _description;
-        [SerializeField, HideInInspector] InterfaceReference<IStoryStarter> _starter = new(null);
+        [SerializeField] InterfaceReference<IStoryStarter> _starter = new(null);
 
         [SerializeField, HideInInspector] string _startingBeat;
         [SerializeField, HideInInspector] List<StoryBeat> _beats = new();
@@ -120,20 +120,18 @@ namespace Moths.Stories
                 return;
             }
 
-
             if (context.currentBeat.currentActions == null) context.currentBeat.currentActions = new();
             if (context.currentBeat.completedActions == null) context.currentBeat.completedActions = new();
 
 #if UNITY_EDITOR
             Debug.Log($"[Story] Start beat {beat.Name}");
 #endif
-
             context.currentBeat.beatGuid = beatGuid;
 
             context.currentBeat.currentActions.Clear();
             context.currentBeat.completedActions.Clear();
 
-            context.currentBeat.currentActions.Add(beat.StartingAction);
+            beat.StartAction(beat.StartingAction, context.currentBeat);
         }
 
         public StoryBeat FindBeat(string guid)
