@@ -1,4 +1,5 @@
 using Moths.Serialization;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Moths.Stories.Actions
@@ -7,6 +8,20 @@ namespace Moths.Stories.Actions
     [System.Serializable]
     public class DoTasks : StoryAction
     {
+        public override string Description
+        {
+            get
+            {
+                List<string> descs = new();
+                foreach(var task in _tasks)
+                {
+                    if (task.Value == null) continue;
+                    descs.Add(task.Value.Description);
+                }
+                return string.Join("\n", descs);
+            }
+        }
+
         [SerializeField] InterfaceReference<ITask>[] _tasks;
 
         protected override Output[] GenerateOutputs()
@@ -28,7 +43,7 @@ namespace Moths.Stories.Actions
         {
             for (int i = 0; i < _tasks.Length; i++)
             {
-                _tasks[i].Value.Do();
+                _tasks[i].Value.Execute();
             }
 
             return GetOutputByID("Then");

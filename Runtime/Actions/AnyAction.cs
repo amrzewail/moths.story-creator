@@ -6,6 +6,7 @@ namespace Moths.Stories.Actions
     public class AnyAction : StoryAction
     {
         [SerializeField] int _count;
+        public override string Description => "";
 
         protected override Output[] GenerateOutputs()
         {

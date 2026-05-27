@@ -7,8 +7,10 @@ namespace Moths.Stories.Tasks
     [InterfaceReference("Debug/Log")]
     public class DebugLogTask : ITask
     {
+        public string Description => $"Log {_text}";
+
         [SerializeField] string _text;
-        public void Do()
+        public void Execute()
         {
             Debug.Log(_text);
         }

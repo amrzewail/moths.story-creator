@@ -2,6 +2,7 @@ namespace Moths.Stories
 {
     public interface ITask
     {
-        void Do();
+        string Description { get; }
+        void Execute();
     }
 }

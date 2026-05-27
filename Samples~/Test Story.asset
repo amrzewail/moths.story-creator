@@ -22,18 +22,26 @@ MonoBehaviour:
   _beats:
   - _guid: 12ac2cdc-9449-4efd-bb3e-ef6780e54901
     _name: An emotional arc
-    _startingAction: 6d34b91a-a299-4ccb-a4d8-6b3d079f5b44
+    _startingAction: f2e1cf0b-e4fd-4f70-bd07-59a7604d99f0
     _actions:
     - _object:
-        rid: 7437749218014396666
-    _outcomes: []
+        rid: 7437749263333851364
+    _outcomes:
+    - name: A
+      guid: 15aa940a-cc1b-4af5-aba7-cd9d0c0597c2
     _actionMappings:
-      _pairs: []
+      _pairs:
+      - key: 701a7486-914b-4eea-b2f9-816601c12f8d
+        value: 15aa940a-cc1b-4af5-aba7-cd9d0c0597c2
   _connections:
     _pairs:
     - key: $$START_NODE
       value: 95c43a78-52b6-41e8-b408-80c0ca1d89e2
     - key: d5765ec2-bcd4-4222-ad87-3027bea93ab7
+      value: __STORY_END__
+    - key: d2da2225-9e89-4c36-9920-d7f5360a548d
+      value: __STORY_END__
+    - key: 15aa940a-cc1b-4af5-aba7-cd9d0c0597c2
       value: __STORY_END__
   references:
     version: 2
@@ -42,22 +50,22 @@ MonoBehaviour:
       type: {class: StoryTimedStarter, ns: Moths.Stories.Samples, asm: Assembly-CSharp}
       data:
         _startTime: 5
-    - rid: 7437749218014396666
-      type: {class: AllActions, ns: Moths.Stories.Actions, asm: Moths.StoryCreator}
+    - rid: 7437749263333851364
+      type: {class: DoTasks, ns: Moths.Stories.Actions, asm: Moths.StoryCreator}
       data:
-        _guid: 6d34b91a-a299-4ccb-a4d8-6b3d079f5b44
-        _name: All Actions
+        _guid: f2e1cf0b-e4fd-4f70-bd07-59a7604d99f0
+        _name: Do Tasks
         _outputs:
-        - id: 0
-          name: 0
-          guid: 578b978e-f3b1-41a0-adf8-6459780328d4
-        - id: 1
-          name: 1
-          guid: 1e0432c9-8f1b-43cf-84c8-4608aa8e5d1e
         - id: Then
           name: Then
-          guid: f69c01d6-bf92-436e-8dfb-d9e4f0afb9a9
-        _count: 2
+          guid: 701a7486-914b-4eea-b2f9-816601c12f8d
+        _tasks:
+        - _object:
+            rid: 7437749263333851367
+    - rid: 7437749263333851367
+      type: {class: DebugLogTask, ns: Moths.Stories.Tasks, asm: Moths.StoryCreator}
+      data:
+        _text: Test action
 --- !u!114 &8447781867797993902
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -108,7 +116,7 @@ MonoBehaviour:
   - guid: 8a3a0a81-6989-4039-92a3-7b29da54ee6d
     position: {x: 571, y: -86}
   - guid: __STORY_END__
-    position: {x: 451, y: 0}
+    position: {x: 417.5, y: 0}
   - guid: 9537296e-1c69-4bf5-9462-e97b05c47050
     position: {x: 542, y: 38.5}
   - guid: 297c525a-775d-480f-92c3-7605ce01ef92
@@ -136,7 +144,7 @@ MonoBehaviour:
   - guid: eae17a41-8642-45aa-9c2f-cc8b8f10c9f9
     position: {x: 578, y: 119}
   - guid: 12ac2cdc-9449-4efd-bb3e-ef6780e54901
-    position: {x: 198, y: 0}
+    position: {x: 198.75613, y: 0.0000027418137}
   - guid: d5765ec2-bcd4-4222-ad87-3027bea93ab7
     position: {x: 360, y: 129}
   - guid: e442f770-d232-4298-966a-c83eab895061
@@ -150,4 +158,14 @@ MonoBehaviour:
   - guid: 6774bdfe-f4ed-4567-a153-e60d7f6c13e9
     position: {x: 321, y: 260}
   - guid: 6d34b91a-a299-4ccb-a4d8-6b3d079f5b44
-    position: {x: 230, y: 0}
+    position: {x: 229.99995, y: 0.000005841255}
+  - guid: f2e1cf0b-e4fd-4f70-bd07-59a7604d99f0
+    position: {x: 214.32704, y: 0.000005841255}
+  - guid: 09757dce-51d3-4f48-af36-38525b782a38
+    position: {x: 230, y: 182}
+  - guid: 556c5267-9d2c-4c7a-894a-cf061a6c0979
+    position: {x: 466.00003, y: 86.49999}
+  - guid: 15aa940a-cc1b-4af5-aba7-cd9d0c0597c2
+    position: {x: 459.29868, y: 0.0000076293945}
+  - guid: d2da2225-9e89-4c36-9920-d7f5360a548d
+    position: {x: 762, y: 48}

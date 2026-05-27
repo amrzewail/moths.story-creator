@@ -49,6 +49,7 @@ namespace Moths.Stories
 
         public string Guid => _guid;
         public string Name { get => _name; set => _name = value; }
+        public abstract string Description { get; }
 
         public IReadOnlyList<ActionOutput> Outputs => _outputs;
 

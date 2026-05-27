@@ -11,6 +11,7 @@ using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
 using static UnityEditor.EditorGUI;
+using static UnityEngine.Audio.ProcessorInstance.AvailableData;
 
 namespace Moths.Stories.Editor
 {
@@ -33,6 +34,14 @@ namespace Moths.Stories.Editor
             GUID = action.Guid;
             title = action.Name;
             position = node.position;
+
+            UpdateDescription();
+        }
+
+        private void UpdateDescription()
+        {
+            extensionContainer.Clear();
+            extensionContainer.Add(new Label(_action.Description));
         }
 
         public string InspectorTitle => _action.Name;
@@ -41,7 +50,6 @@ namespace Moths.Stories.Editor
         {
             inputContainer.Clear();
             outputContainer.Clear();
-            extensionContainer.Clear();
 
             var entryPort = InstantiatePort(Orientation.Horizontal, Direction.Input, Port.Capacity.Multi, typeof(ActionNode));
             entryPort.portName = "Activate";
@@ -117,13 +125,23 @@ namespace Moths.Stories.Editor
                 }
             }
 
+            inspector.RegisterCallback<ChangeEvent<string>>(e => UpdateDescription());
+            inspector.RegisterCallback<ChangeEvent<bool>>(e => UpdateDescription());
+            inspector.RegisterCallback<ChangeEvent<float>>(e => UpdateDescription());
+            inspector.RegisterCallback<ChangeEvent<int>>(e => UpdateDescription());
+            inspector.RegisterCallback<ChangeEvent<UnityEngine.Object>>(e => UpdateDescription());
+            inspector.RegisterCallback<ChangeEvent<System.Enum>>(e => UpdateDescription());
+            inspector.RegisterCallback<ChangeEvent<UnityEngine.Vector2>>(e => UpdateDescription());
+            inspector.RegisterCallback<ChangeEvent<UnityEngine.Vector3>>(e => UpdateDescription());
+            inspector.RegisterCallback<ChangeEvent<UnityEngine.Color>>(e => UpdateDescription());
+
+            UpdateDescription();
+
             return inspector;
         }
 
         private void DrawManagedReferenceFieldsViaReflection(VisualElement container, SerializedProperty managedProperty)
         {
-            container.Clear();
-
             object targetObject = managedProperty.managedReferenceValue;
 
             if (targetObject == null) return;

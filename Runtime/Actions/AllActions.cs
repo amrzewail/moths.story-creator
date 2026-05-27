@@ -7,6 +7,8 @@ namespace Moths.Stories.Actions
     {
         [SerializeField] int _count;
 
+        public override string Description => "";
+
         protected override Output[] GenerateOutputs()
         {
             var outputs = new Output[_count + 1];
