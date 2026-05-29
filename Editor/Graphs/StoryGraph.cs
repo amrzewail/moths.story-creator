@@ -255,7 +255,7 @@ namespace Moths.Stories.Editor.Graphs
             Dictionary<string, BasicNode> oldGuidToNewNodeMap = new();
             foreach (var node in copyData.nodes)
             {
-                var type = AppDomain.CurrentDomain.GetAssemblies().SelectMany(a => a.GetTypes()).FirstOrDefault(t => t.FullName == node.type);
+                var type = Type.GetType(node.type);
                 BasicNode newNode = null;
 
                 if (type == typeof(BeatNode))

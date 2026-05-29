@@ -295,7 +295,7 @@ namespace Moths.Stories.Editor.Graphs
                     if (element is ISerializable serializable)
                     {
                         string concreteType = string.Empty;
-                        if (element is ActionNode actionNode) concreteType = actionNode.Action.GetType().FullName;
+                        if (element is ActionNode actionNode) concreteType = actionNode.Action.GetType().AssemblyQualifiedName;
 
                         serialized.nodes.Add(new()
                         {
@@ -334,12 +334,12 @@ namespace Moths.Stories.Editor.Graphs
             Dictionary<string, BasicNode> oldGuidToNewNodeMap = new();
             foreach (var node in copyData.nodes)
             {
-                var type = AppDomain.CurrentDomain.GetAssemblies().SelectMany(a => a.GetTypes()).FirstOrDefault(t => t.FullName == node.type);
+                var type = Type.GetType(node.type);
                 BasicNode newNode = null;
 
                 if (type == typeof(ActionNode))
                 {
-                    var actionType = AppDomain.CurrentDomain.GetAssemblies().SelectMany(a => a.GetTypes()).FirstOrDefault(t => t.FullName == node.concreteType);
+                    var actionType = Type.GetType(node.concreteType);
                     if (actionType != null)
                     {
                         var action = (StoryAction)Activator.CreateInstance(actionType);
