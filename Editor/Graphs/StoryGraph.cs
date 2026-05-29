@@ -97,11 +97,13 @@ namespace Moths.Stories.Editor.Graphs
                 _story.StartingBeat = edge.input.viewDataKey;
                 EditorUtility.SetDirty(_story);
             }
-
-            _story.Connections[edge.output.viewDataKey] = edge.input.viewDataKey;
-            EditorUtility.SetDirty(_story);
-
+            else
+            {
+                _story.Connections[edge.output.viewDataKey] = edge.input.viewDataKey;
+                EditorUtility.SetDirty(_story);
+            }
         }
+
         private void EdgeRemovedCallback(Edge edge)
         {
             try

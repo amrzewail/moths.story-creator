@@ -26,14 +26,14 @@ namespace Moths.Stories
     [CreateAssetMenu(menuName = "Moths/StoryCreator/Story")]
     public class Story : ScriptableObject, INameable
     {
-        [SerializeField, HideInInspector] string _guid;
+        [SerializeField, Moths.Attributes.ReadOnly] string _guid;
         [SerializeField] string _name;
         [SerializeField, TextArea(2, 5)] string _description;
         [SerializeField] InterfaceReference<IStoryStarter> _starter = new(null);
 
-        [SerializeField, HideInInspector] string _startingBeat;
-        [SerializeField, HideInInspector] List<StoryBeat> _beats = new();
-        [SerializeField, HideInInspector] SerializableDictionary<string, string> _connections = new();
+        [SerializeField] string _startingBeat;
+        [SerializeField] List<StoryBeat> _beats = new();
+        [SerializeField] SerializableDictionary<string, string> _connections = new();
 
         public string Name => _name;
         public string Description => _description;
