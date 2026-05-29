@@ -1,0 +1,304 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-4618386295101933403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7cceb313d471064ca146b807ec81313, type: 3}
+  m_Name: Graph
+  m_EditorClassIdentifier: Moths.StoryCreator.Editor::Moths.Stories.Editor.StoryGraphProperties
+  _nodes:
+  - guid: __STORY_END__
+    position: {x: 853.3044, y: -0.000010371208}
+  - guid: fb61046a-444d-4c8b-aae3-069a4bc82a15
+    position: {x: 370.4928, y: -0.000031471252}
+  - guid: 71144a94-df7c-4716-b4b7-ac72834bac26
+    position: {x: 2417.4578, y: 0.0000032186508}
+  - guid: 4bfb0fe6-c667-4dad-affb-463b3d8f8cd7
+    position: {x: 795.8261, y: -0.000041557396}
+  - guid: a061f188-e46d-4b86-81b1-95a8ece87a66
+    position: {x: 431, y: 0}
+  - guid: d8435e1a-1fea-4ddb-b83c-8220b3096368
+    position: {x: 827.5675, y: 0.000009775162}
+  - guid: d2d6adc5-5a95-4bf0-a9dd-5383c8042e35
+    position: {x: 1789.5675, y: 0.000009775162}
+  - guid: 0537c719-5390-40c4-8cc7-f0320277565c
+    position: {x: 1482.5675, y: 0.000009775162}
+  - guid: 7d048e4e-fd49-4659-b8d0-78c48c9b3ecc
+    position: {x: 459.00006, y: 0.000030517578}
+  - guid: 60358391-f072-4213-bef0-9e78a0d44107
+    position: {x: 1075.5675, y: 0.000009775162}
+  - guid: 5611d29d-e0e0-4f16-92a8-ba37b9766915
+    position: {x: 178.4348, y: -0.000011444092}
+  - guid: 50f49c0b-47b3-4e51-bd40-e76b0d37020f
+    position: {x: 154.70004, y: 0.00000667572}
+  - guid: 390e6939-5456-4172-87aa-bff0f79eed1a
+    position: {x: 369.56754, y: 0.000009775162}
+  - guid: eb816f82-fc1f-4068-93ba-5a6f08525501
+    position: {x: 193.78453, y: 0.000015258789}
+  - guid: 27463cea-ac50-48f6-be3d-8744773d5b8d
+    position: {x: 543.65216, y: -0.000038146973}
+  - guid: 4a0f50b8-edd6-472c-bd6f-c3801075a830
+    position: {x: 773.9739, y: -0.00000500679}
+  - guid: 5bb48e52-a47c-4c43-88e5-4122f7d3d57c
+    position: {x: 104, y: 105}
+  - guid: d857eec8-5038-4a02-b7fc-d5441c3ed7e8
+    position: {x: 1456.4578, y: 0.0000032186508}
+  - guid: 29fcd13e-28d9-4493-a1ea-c522fc855002
+    position: {x: 2111.4575, y: 0.0000032186508}
+  - guid: 75b802b1-502b-4668-95d9-9e88075bee9b
+    position: {x: 1704.4578, y: 0.0000032186508}
+  - guid: 40fac0d1-f91e-46fc-88c9-208e29455e24
+    position: {x: 998.4577, y: 0.0000032186508}
+  - guid: 8aa5132e-3b4b-4a47-aabc-d09c5272aa2f
+    position: {x: 1013.70514, y: 0}
+  - guid: ac543f2f-2177-4daa-96a1-8c690eeffd95
+    position: {x: 157.79477, y: 76.99994}
+  - guid: 921f4f4b-c4cf-4fe0-b91e-1472ceaa01a9
+    position: {x: 196, y: 0}
+  - guid: 769cb092-5a59-471e-b869-f4017bbca653
+    position: {x: 509.78268, y: -0.0000052452087}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b2724e131c14a34d89dbd477ca0b051, type: 3}
+  m_Name: MainStory
+  m_EditorClassIdentifier: Moths.StoryCreator::Moths.Stories.Story
+  _guid: 942883ab-d692-4e0b-a628-ddeec7714406
+  _name: Main Story
+  _description: 
+  _starter:
+    _object:
+      rid: -2
+  _startingBeat: 
+  _beats:
+  - _guid: fb61046a-444d-4c8b-aae3-069a4bc82a15
+    _name: Dinner Time
+    _startingAction: eb816f82-fc1f-4068-93ba-5a6f08525501
+    _actions:
+    - _object:
+        rid: 7437749307642478592
+    - _object:
+        rid: 7437749307642479058
+    - _object:
+        rid: 7437749307642479059
+    - _object:
+        rid: 7437749328569172307
+    - _object:
+        rid: 7437749328569172308
+    - _object:
+        rid: 7437749328569172309
+    - _object:
+        rid: 7437749328569172310
+    _outcomes:
+    - name: Complete
+      guid: 71144a94-df7c-4716-b4b7-ac72834bac26
+    _actionMappings:
+      _pairs:
+      - key: 8444f55b-cc39-47dc-9e93-e7f18bdb2b4f
+        value: 27463cea-ac50-48f6-be3d-8744773d5b8d
+      - key: 887bd1d5-59c0-41cc-befc-8c6e169bfefa
+        value: 4a0f50b8-edd6-472c-bd6f-c3801075a830
+      - key: c8ad7cbc-3e5e-4886-8d3f-414a2f5fb594
+        value: d857eec8-5038-4a02-b7fc-d5441c3ed7e8
+      - key: 9e5be4b7-c8f4-4c50-9d55-9fb7585ba134
+        value: 75b802b1-502b-4668-95d9-9e88075bee9b
+      - key: acab9910-70c0-41db-b88d-da0674ea9aba
+        value: 29fcd13e-28d9-4493-a1ea-c522fc855002
+      - key: b4723355-b2fe-4983-ae39-83be336cef6c
+        value: 71144a94-df7c-4716-b4b7-ac72834bac26
+      - key: 2b86a5f9-f6d9-4753-925e-ad031a78dba0
+        value: 40fac0d1-f91e-46fc-88c9-208e29455e24
+  - _guid: ac543f2f-2177-4daa-96a1-8c690eeffd95
+    _name: Start
+    _startingAction: 921f4f4b-c4cf-4fe0-b91e-1472ceaa01a9
+    _actions:
+    - _object:
+        rid: 7437749328569172316
+    _outcomes:
+    - name: Complete
+      guid: 769cb092-5a59-471e-b869-f4017bbca653
+    _actionMappings:
+      _pairs:
+      - key: a7c6ac4d-2006-4ddf-9b80-9a53b1c3977b
+        value: 769cb092-5a59-471e-b869-f4017bbca653
+  _connections:
+    _pairs: []
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 7437749307642478592
+      type: {class: ExecuteTasks, ns: Moths.Stories.Actions, asm: Moths.StoryCreator}
+      data:
+        _guid: eb816f82-fc1f-4068-93ba-5a6f08525501
+        _name: Execute Tasks
+        _outputs:
+        - id: Then
+          name: Then
+          guid: 8444f55b-cc39-47dc-9e93-e7f18bdb2b4f
+        _tasks:
+        - _object:
+            rid: 7437749307642478593
+        - _object:
+            rid: 7437749307642478711
+    - rid: 7437749307642478593
+      type: {class: Relocate, ns: Unpainted.Dialogues.StoryCreator, asm: Assembly-CSharp}
+      data:
+        _actor:
+          _guid: ecba8873-a6c3-4d6c-a92f-9b092d6582ca
+          _reference: {fileID: 11400000, guid: 5d157139581569c40b0a773abb383e92, type: 2}
+        _location:
+          _guid: 3b3d7f99-302a-41fd-9d9b-96290ba3a703
+          _reference: {fileID: 11400000, guid: 338614cfad35a5f468eb9590fc840200, type: 2}
+        _canSpawn: 0
+    - rid: 7437749307642478711
+      type: {class: SetTime, ns: Unpainted.Dialogues.StoryCreator, asm: Assembly-CSharp}
+      data:
+        _time: 17.7
+        _transitionDuration: 0
+    - rid: 7437749307642479058
+      type: {class: KillAction, ns: Unpainted.Dialogues.StoryCreator, asm: Assembly-CSharp}
+      data:
+        _guid: 27463cea-ac50-48f6-be3d-8744773d5b8d
+        _name: Kill
+        _outputs:
+        - id: Success
+          name: Success
+          guid: 887bd1d5-59c0-41cc-befc-8c6e169bfefa
+        _actor:
+          _guid: 25f440af-9af7-4dc5-b486-b125e9421c46
+          _reference: {fileID: 11400000, guid: 5d157139581569c40b0a773abb383e92, type: 2}
+        _count: 1
+    - rid: 7437749307642479059
+      type: {class: ExecuteTasks, ns: Moths.Stories.Actions, asm: Moths.StoryCreator}
+      data:
+        _guid: 4a0f50b8-edd6-472c-bd6f-c3801075a830
+        _name: Execute Tasks
+        _outputs:
+        - id: Then
+          name: Then
+          guid: 2b86a5f9-f6d9-4753-925e-ad031a78dba0
+        _tasks:
+        - _object:
+            rid: 7437749307642479060
+    - rid: 7437749307642479060
+      type: {class: Collect, ns: Unpainted.Dialogues.StoryCreator, asm: Assembly-CSharp}
+      data:
+        _item: {fileID: 4077425153777391177, guid: 4938e1d8917e9974a95a97bd021af6cd, type: 2}
+        _count: 1
+    - rid: 7437749328569172307
+      type: {class: TalkAction, ns: Unpainted.Dialogues.StoryCreator, asm: Assembly-CSharp}
+      data:
+        _guid: d857eec8-5038-4a02-b7fc-d5441c3ed7e8
+        _name: Talk
+        _outputs:
+        - id: 403ca8a9-5864-481b-ab57-4bcfcb41b5e2
+          name: Output
+          guid: 9e5be4b7-c8f4-4c50-9d55-9fb7585ba134
+        _actor:
+          _guid: ad9a5c16-d64a-4f6e-b56c-9819731416f7
+          _reference: {fileID: 11400000, guid: 5d157139581569c40b0a773abb383e92, type: 2}
+        _dialogue: {fileID: 11400000, guid: 6086e840edc6e634d990b22ef317f48c, type: 2}
+        _playOnce: 1
+    - rid: 7437749328569172308
+      type: {class: TravelAction, ns: Unpainted.Dialogues.StoryCreator, asm: Assembly-CSharp}
+      data:
+        _guid: 29fcd13e-28d9-4493-a1ea-c522fc855002
+        _name: Travel
+        _outputs:
+        - id: Then
+          name: Then
+          guid: b4723355-b2fe-4983-ae39-83be336cef6c
+        _actor:
+          _guid: ecba8873-a6c3-4d6c-a92f-9b092d6582ca
+          _reference: {fileID: 11400000, guid: 5d157139581569c40b0a773abb383e92, type: 2}
+        _location:
+          _guid: 895a28c9-94d8-4bf1-988b-a4d829560928
+          _reference: {fileID: 11400000, guid: 338614cfad35a5f468eb9590fc840200, type: 2}
+    - rid: 7437749328569172309
+      type: {class: ExecuteTasks, ns: Moths.Stories.Actions, asm: Moths.StoryCreator}
+      data:
+        _guid: 75b802b1-502b-4668-95d9-9e88075bee9b
+        _name: Execute Tasks
+        _outputs:
+        - id: Then
+          name: Then
+          guid: acab9910-70c0-41db-b88d-da0674ea9aba
+        _tasks:
+        - _object:
+            rid: 7437749328569172312
+        - _object:
+            rid: 7437749328569172313
+    - rid: 7437749328569172310
+      type: {class: ExecuteTasks, ns: Moths.Stories.Actions, asm: Moths.StoryCreator}
+      data:
+        _guid: 40fac0d1-f91e-46fc-88c9-208e29455e24
+        _name: Execute Tasks
+        _outputs:
+        - id: Then
+          name: Then
+          guid: c8ad7cbc-3e5e-4886-8d3f-414a2f5fb594
+        _tasks:
+        - _object:
+            rid: 7437749328569172314
+    - rid: 7437749328569172312
+      type: {class: Travel, ns: Unpainted.Dialogues.StoryCreator, asm: Assembly-CSharp}
+      data:
+        _actor:
+          _guid: ad9a5c16-d64a-4f6e-b56c-9819731416f7
+          _reference: {fileID: 11400000, guid: 5d157139581569c40b0a773abb383e92, type: 2}
+        _location:
+          _guid: 895a28c9-94d8-4bf1-988b-a4d829560928
+          _reference: {fileID: 11400000, guid: 338614cfad35a5f468eb9590fc840200, type: 2}
+    - rid: 7437749328569172313
+      type: {class: SetActorDialogue, ns: Unpainted.Dialogues.StoryCreator, asm: Assembly-CSharp}
+      data:
+        _actor:
+          _guid: ad9a5c16-d64a-4f6e-b56c-9819731416f7
+          _reference: {fileID: 11400000, guid: 5d157139581569c40b0a773abb383e92, type: 2}
+        _dialogue: {fileID: 11400000, guid: 6086e840edc6e634d990b22ef317f48c, type: 2}
+    - rid: 7437749328569172314
+      type: {class: Relocate, ns: Unpainted.Dialogues.StoryCreator, asm: Assembly-CSharp}
+      data:
+        _actor:
+          _guid: ad9a5c16-d64a-4f6e-b56c-9819731416f7
+          _reference: {fileID: 11400000, guid: 5d157139581569c40b0a773abb383e92, type: 2}
+        _location:
+          _guid: ef06104c-6296-4069-bb6b-33e8c776374b
+          _reference: {fileID: 11400000, guid: 338614cfad35a5f468eb9590fc840200, type: 2}
+        _canSpawn: 1
+    - rid: 7437749328569172316
+      type: {class: ExecuteTasks, ns: Moths.Stories.Actions, asm: Moths.StoryCreator}
+      data:
+        _guid: 921f4f4b-c4cf-4fe0-b91e-1472ceaa01a9
+        _name: Execute Tasks
+        _outputs:
+        - id: Then
+          name: Then
+          guid: a7c6ac4d-2006-4ddf-9b80-9a53b1c3977b
+        _tasks:
+        - _object:
+            rid: 7437749328569172317
+    - rid: 7437749328569172317
+      type: {class: Relocate, ns: Unpainted.Dialogues.StoryCreator, asm: Assembly-CSharp}
+      data:
+        _actor:
+          _guid: ecba8873-a6c3-4d6c-a92f-9b092d6582ca
+          _reference: {fileID: 11400000, guid: 5d157139581569c40b0a773abb383e92, type: 2}
+        _location:
+          _guid: 3b3d7f99-302a-41fd-9d9b-96290ba3a703
+          _reference: {fileID: 11400000, guid: 338614cfad35a5f468eb9590fc840200, type: 2}
+        _canSpawn: 0
