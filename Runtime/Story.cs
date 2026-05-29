@@ -155,7 +155,7 @@ namespace Moths.Stories
             context.currentBeat.currentActions.Clear();
             context.currentBeat.completedActions.Clear();
 
-            foreach(var action in actionGuid)
+            foreach(var action in actionsGuid)
             {
                 beat.StartAction(action, context.currentBeat);
             }
