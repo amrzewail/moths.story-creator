@@ -21,9 +21,9 @@ namespace Moths.Stories
         [SerializeField] string _guid;
         [SerializeField] string _name;
         [SerializeField] string _startingAction;
-        [SerializeField] List<InterfaceReference<StoryAction>> _actions = new List<InterfaceReference<StoryAction>>();
-        [SerializeField] List<BeatOutcome> _outcomes = new List<BeatOutcome>();
-        [SerializeField] SerializableDictionary<string, string> _actionMappings;
+        [SerializeField] List<InterfaceReference<StoryAction>> _actions = new();
+        [SerializeField] List<BeatOutcome> _outcomes = new();
+        [SerializeField] SerializableDictionary<string, string> _actionMappings = new();
 
         public string Name { get => _name; set => _name = value; }
         public string Guid => _guid;
@@ -194,6 +194,104 @@ namespace Moths.Stories
             }
             return default;
 
+        }
+
+        [System.Serializable]
+        private struct BeatSerializationData
+        {
+            public string guid;
+            public string name;
+            public string startingAction;
+            public List<string> actions;
+            public List<BeatOutcome> outcomes;
+            public SerializableDictionary<string, string> actionMappings;
+        }
+
+        public string Serialize()
+        {
+            BeatSerializationData data;
+            data.guid = _guid;
+            data.name = _name;
+            data.startingAction = _startingAction;
+            data.actions = _actions.Select(a => a.Serialize()).ToList();
+            data.outcomes = _outcomes;
+            data.actionMappings = _actionMappings;
+
+            return JsonUtility.ToJson(data);
+        }
+
+        public void Deserialize(string json)
+        {
+            BeatSerializationData data = JsonUtility.FromJson<BeatSerializationData>(json);
+            _guid = data.guid;
+            _name = data.name;
+            _startingAction = data.startingAction;
+            _actions = data.actions.Select(s =>
+            {
+                var ir = new InterfaceReference<StoryAction>();
+                ir.Deserialize(s);
+                return ir;
+            }).ToList();
+            _outcomes = data.outcomes;
+            _actionMappings = new SerializableDictionary<string, string>();
+            if (data.actionMappings != null)
+            {
+                foreach(var pair in data.actionMappings)
+                {
+                    _actionMappings[pair.key] = pair.value;
+                }
+            }
+        }
+
+        public void ResetGUIDs()
+        {
+            Dictionary<string, string> mapping = new Dictionary<string, string>();
+
+            string oldBeatGuid = _guid;
+            _guid = System.Guid.NewGuid().ToString();
+            mapping[oldBeatGuid] = _guid;
+
+            // 1. Outcomes
+            for (int i = 0; i < _outcomes.Count; i++)
+            {
+                string oldO = _outcomes[i].guid;
+                string newO = System.Guid.NewGuid().ToString();
+                mapping[oldO] = newO;
+                var o = _outcomes[i];
+                o.guid = newO;
+                _outcomes[i] = o;
+            }
+
+            // 2. Actions
+            foreach (var actionRef in _actions)
+            {
+                var action = actionRef.Value;
+                var actionMapping = action.ResetGUIDs();
+                foreach (var pair in actionMapping)
+                {
+                    mapping[pair.Key] = pair.Value;
+                }
+            }
+
+            // 3. Update Starting Action
+            if (mapping.ContainsKey(_startingAction))
+            {
+                _startingAction = mapping[_startingAction];
+            }
+
+            // 4. Update Action Mappings
+            var newMappings = new SerializableDictionary<string, string>();
+            foreach (var pair in _actionMappings)
+            {
+                string key = pair.key;
+                string val = pair.value;
+
+                if (mapping.ContainsKey(key)) key = mapping[key];
+                if (mapping.ContainsKey(val)) val = mapping[val];
+
+                newMappings[key] = val;
+            }
+            _actionMappings = newMappings;
         }
     }
 }

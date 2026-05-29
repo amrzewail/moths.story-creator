@@ -25,7 +25,7 @@ MonoBehaviour:
     _startingAction: f2e1cf0b-e4fd-4f70-bd07-59a7604d99f0
     _actions:
     - _object:
-        rid: 7437749263333851364
+        rid: -2
     _outcomes:
     - name: A
       guid: 15aa940a-cc1b-4af5-aba7-cd9d0c0597c2
@@ -46,26 +46,12 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
     - rid: 7437749218014396481
       type: {class: StoryTimedStarter, ns: Moths.Stories.Samples, asm: Assembly-CSharp}
       data:
         _startTime: 5
-    - rid: 7437749263333851364
-      type: {class: DoTasks, ns: Moths.Stories.Actions, asm: Moths.StoryCreator}
-      data:
-        _guid: f2e1cf0b-e4fd-4f70-bd07-59a7604d99f0
-        _name: Do Tasks
-        _outputs:
-        - id: Then
-          name: Then
-          guid: 701a7486-914b-4eea-b2f9-816601c12f8d
-        _tasks:
-        - _object:
-            rid: 7437749263333851367
-    - rid: 7437749263333851367
-      type: {class: DebugLogTask, ns: Moths.Stories.Tasks, asm: Moths.StoryCreator}
-      data:
-        _text: Test action
 --- !u!114 &8447781867797993902
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -144,7 +130,7 @@ MonoBehaviour:
   - guid: eae17a41-8642-45aa-9c2f-cc8b8f10c9f9
     position: {x: 578, y: 119}
   - guid: 12ac2cdc-9449-4efd-bb3e-ef6780e54901
-    position: {x: 198.75613, y: 0.0000027418137}
+    position: {x: 199, y: 0}
   - guid: d5765ec2-bcd4-4222-ad87-3027bea93ab7
     position: {x: 360, y: 129}
   - guid: e442f770-d232-4298-966a-c83eab895061
@@ -160,7 +146,7 @@ MonoBehaviour:
   - guid: 6d34b91a-a299-4ccb-a4d8-6b3d079f5b44
     position: {x: 229.99995, y: 0.000005841255}
   - guid: f2e1cf0b-e4fd-4f70-bd07-59a7604d99f0
-    position: {x: 214.32704, y: 0.000005841255}
+    position: {x: 210.73158, y: 0.0000017881393}
   - guid: 09757dce-51d3-4f48-af36-38525b782a38
     position: {x: 230, y: 182}
   - guid: 556c5267-9d2c-4c7a-894a-cf061a6c0979
@@ -169,3 +155,7 @@ MonoBehaviour:
     position: {x: 459.29868, y: 0.0000076293945}
   - guid: d2da2225-9e89-4c36-9920-d7f5360a548d
     position: {x: 762, y: 48}
+  - guid: 2df5dede-52a2-4ae0-bd61-2c5b477c48ad
+    position: {x: 247, y: 113}
+  - guid: eec9e253-b749-4731-bfc1-cc53c94faa21
+    position: {x: 177.82986, y: 133.26843}

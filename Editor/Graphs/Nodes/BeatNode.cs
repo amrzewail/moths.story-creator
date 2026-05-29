@@ -9,11 +9,13 @@ using UnityEngine.UIElements;
 
 namespace Moths.Stories.Editor
 {
-    public class BeatNode : BasicNode, IInspectable
+    public class BeatNode : BasicNode, IInspectable, ISerializable
     {
         private Story _story;
         private Node _node;
         private StoryBeat _beat;
+
+        public StoryBeat Beat => _beat;
 
         public event Action EditClicked;
 
@@ -89,6 +91,12 @@ namespace Moths.Stories.Editor
 
             _node.position = newPos.position;
             _node.Update();
+        }
+
+        public string Serialize()
+        {
+            // We'll implement a custom serialization for StoryBeat to handle InterfaceReference
+            return _beat.Serialize();
         }
     }
 }

@@ -97,5 +97,39 @@ namespace Moths.Stories
             }
             return default;
         }
+
+        public Dictionary<string, string> ResetGUIDs()
+        {
+            Dictionary<string, string> mapping = new Dictionary<string, string>();
+            
+            string oldGuid = _guid;
+            _guid = System.Guid.NewGuid().ToString();
+            mapping[oldGuid] = _guid;
+
+            Dictionary<string, string> oldOutputGuids = new Dictionary<string, string>();
+            if (_outputs != null)
+            {
+                foreach (var output in _outputs)
+                {
+                    oldOutputGuids[output.id] = output.guid;
+                }
+            }
+
+            _outputs = null;
+            UpdateOutputs();
+
+            if (_outputs != null)
+            {
+                foreach (var output in _outputs)
+                {
+                    if (oldOutputGuids.ContainsKey(output.id))
+                    {
+                        mapping[oldOutputGuids[output.id]] = output.guid;
+                    }
+                }
+            }
+
+            return mapping;
+        }
     }
 }

@@ -14,6 +14,32 @@ using UnityEngine.UIElements;
 
 namespace Moths.Stories.Editor.Graphs
 {
+    [System.Serializable]
+    public struct SerializedBeatGraph
+    {
+        [System.Serializable]
+        public struct SerializedConnection
+        {
+            public string outputNodeGuid;
+            public string inputNodeGuid;
+            public int outputPortIndex;
+            public int inputPortIndex;
+        }
+
+        [System.Serializable]
+        public struct SerializedNode
+        {
+            public string type;
+            public string concreteType;
+            public string guid;
+            public Vector2 position;
+            public string data;
+        }
+
+        public List<SerializedNode> nodes;
+        public List<SerializedConnection> connections;
+    }
+
     public class BeatGraph : BaseGraph<StoryBeat>, IRefreshable
     {
         private StoryCreator _editor;
@@ -34,6 +60,10 @@ namespace Moths.Stories.Editor.Graphs
             _graphView.NodeSelected += NodeSelectedCallback;
             _graphView.NodeUnselected += NodeUnselectedCallback;
             _graphView.NodeRemoved += NodeRemovedCallback;
+
+            _graphView.serializeGraphElements = SerializeGraphElementsCallback;
+            _graphView.canPasteSerializedData = data => true;
+            _graphView.unserializeAndPaste = UnserializePasteCallback;
 
             this.Add(_sidebar);
 
@@ -253,5 +283,128 @@ namespace Moths.Stories.Editor.Graphs
             _editor.SetAssetDirty();
         }
 
+        private string SerializeGraphElementsCallback(IEnumerable<GraphElement> elements)
+        {
+            SerializedBeatGraph serialized;
+            serialized.nodes = new();
+            serialized.connections = new();
+            foreach (var element in elements)
+            {
+                if (element is BasicNode node)
+                {
+                    if (element is ISerializable serializable)
+                    {
+                        string concreteType = string.Empty;
+                        if (element is ActionNode actionNode) concreteType = actionNode.Action.GetType().FullName;
+
+                        serialized.nodes.Add(new()
+                        {
+                            position = element.GetPosition().position,
+                            type = element.GetType().FullName,
+                            concreteType = concreteType,
+                            guid = node.GUID,
+                            data = serializable.Serialize()
+                        });
+                    }
+                }
+                else if (element is Edge edge)
+                {
+                    if (edge.output == null || edge.input == null) continue;
+                    serialized.connections.Add(new()
+                    {
+                        outputNodeGuid = ((BasicNode)edge.output.node).GUID,
+                        outputPortIndex = edge.output.node.Query<Port>().ToList().IndexOf(edge.output),
+                        inputNodeGuid = ((BasicNode)edge.input.node).GUID,
+                        inputPortIndex = edge.input.node.Query<Port>().ToList().IndexOf(edge.input),
+                    });
+                }
+
+            }
+            return JsonUtility.ToJson(serialized);
+        }
+
+        private void UnserializePasteCallback(string operationName, string data)
+        {
+            _graphView.ClearSelection();
+
+            SerializedBeatGraph copyData = JsonUtility.FromJson<SerializedBeatGraph>(data);
+            if (copyData.nodes == null) return;
+            List<string> elementsToSelect = new List<string>();
+
+            Dictionary<string, BasicNode> oldGuidToNewNodeMap = new();
+            foreach (var node in copyData.nodes)
+            {
+                var type = AppDomain.CurrentDomain.GetAssemblies().SelectMany(a => a.GetTypes()).FirstOrDefault(t => t.FullName == node.type);
+                BasicNode newNode = null;
+
+                if (type == typeof(ActionNode))
+                {
+                    var actionType = AppDomain.CurrentDomain.GetAssemblies().SelectMany(a => a.GetTypes()).FirstOrDefault(t => t.FullName == node.concreteType);
+                    if (actionType != null)
+                    {
+                        var action = (StoryAction)Activator.CreateInstance(actionType);
+                        JsonUtility.FromJsonOverwrite(node.data, action);
+                        action.ResetGUIDs();
+
+                        _beat.AddAction(action);
+
+                        var graphNode = _editor.Graph.FindNodeByGuid(action.Guid, out var isNew);
+                        graphNode.position = node.position - copyData.nodes[0].position + (Vector2)_graphView.GetViewportCenter();
+
+                        newNode = new ActionNode(_editor.Story, _beat, graphNode, action);
+                        _graphView.AddNode(newNode);
+                        ((ActionNode)newNode).PortsUpdated += RefreshConnections;
+                    }
+                }
+                else if (type == typeof(OutcomeNode))
+                {
+                    _beat.AddOutcome();
+                    var outcome = _beat.Outcomes.Last();
+                    var oldOutcomeData = JsonUtility.FromJson<BeatOutcome>(node.data);
+                    outcome.name = oldOutcomeData.name;
+                    _beat.UpdateOutcome(outcome);
+
+                    var graphNode = _editor.Graph.FindNodeByGuid(outcome.guid, out var isNew);
+                    graphNode.position = node.position - copyData.nodes[0].position + (Vector2)_graphView.GetViewportCenter();
+
+                    newNode = new OutcomeNode(_editor.Story, _beat, graphNode, outcome);
+                    _graphView.AddNode(newNode);
+                    ((OutcomeNode)newNode).NodeMoved += OutcomeNodeMovedCallback;
+                }
+
+                if (newNode != null)
+                {
+                    oldGuidToNewNodeMap[node.guid] = newNode;
+                    elementsToSelect.Add(newNode.GUID);
+                }
+            }
+
+            foreach (var connection in copyData.connections)
+            {
+                if (oldGuidToNewNodeMap.TryGetValue(connection.outputNodeGuid, out BasicNode newOutputNode) &&
+                    oldGuidToNewNodeMap.TryGetValue(connection.inputNodeGuid, out BasicNode newInputNode))
+                {
+                    Port outputPort = newOutputNode.Query<Port>().AtIndex(connection.outputPortIndex);
+                    Port inputPort = newInputNode.Query<Port>().AtIndex(connection.inputPortIndex);
+
+                    if (outputPort != null && inputPort != null)
+                    {
+                        Edge edge = _graphView.LinkNodes(outputPort, inputPort);
+                        _beat.ActionMappings[edge.output.viewDataKey] = edge.input.viewDataKey;
+                    }
+                }
+            }
+
+            _editor.SetAssetDirty();
+            Refresh();
+
+            _graphView.schedule.Execute(() =>
+            {
+                foreach (var element in elementsToSelect)
+                {
+                    _graphView.AddToSelection(_graphView.GetNodeByGUID(element));
+                }
+            });
+        }
     }
 }

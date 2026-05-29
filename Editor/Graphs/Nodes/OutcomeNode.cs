@@ -8,12 +8,14 @@ using UnityEngine.UIElements;
 
 namespace Moths.Stories.Editor
 {
-    public class OutcomeNode : BasicNode, IInspectable
+    public class OutcomeNode : BasicNode, IInspectable, ISerializable
     {
         private Story _story;
         private StoryBeat _beat;
         private Node _node;
         private BeatOutcome _outcome;
+
+        public BeatOutcome Outcome => _outcome;
 
         public string InspectorTitle => _outcome.name;
 
@@ -66,6 +68,11 @@ namespace Moths.Stories.Editor
             inspector.Add(textField);
 
             return inspector;
+        }
+
+        public string Serialize()
+        {
+            return JsonUtility.ToJson(_outcome);
         }
     }
 }

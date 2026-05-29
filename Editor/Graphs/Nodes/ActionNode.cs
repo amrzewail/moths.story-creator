@@ -15,12 +15,14 @@ using static UnityEngine.Audio.ProcessorInstance.AvailableData;
 
 namespace Moths.Stories.Editor
 {
-    public class ActionNode : BasicNode, IInspectable
+    public class ActionNode : BasicNode, IInspectable, ISerializable
     {
         private Story _story;
         private StoryBeat _beat;
         private Node _node;
         private StoryAction _action;
+
+        public StoryAction Action => _action;
 
         public event Action PortsUpdated;
 
@@ -207,6 +209,11 @@ namespace Moths.Stories.Editor
 
             _node.position = newPos.position;
             _node.Update();
+        }
+
+        public string Serialize()
+        {
+            return JsonUtility.ToJson(_action);
         }
     }
 }
