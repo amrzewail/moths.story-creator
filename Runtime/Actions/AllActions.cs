@@ -12,11 +12,11 @@ namespace Moths.Stories.Actions
         protected override Output[] GenerateOutputs()
         {
             var outputs = new Output[_count + 1];
+            outputs[0] = new Output("Then");
             for (int i = 0; i < outputs.Length - 1; i++)
             {
-                outputs[i] = new Output(i.ToString());
+                outputs[i + 1] = new Output(i.ToString());
             }
-            outputs[outputs.Length - 1] = new Output("Then");
             return outputs;
         }
 

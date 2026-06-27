@@ -17,22 +17,70 @@ MonoBehaviour:
   _description: A story about a capsule trying to find its home.
   _starter:
     _object:
-      rid: 7437749218014396481
-  _startingBeat: 12ac2cdc-9449-4efd-bb3e-ef6780e54901
+      rid: -2
+  _startingBeat: 
   _beats:
   - _guid: 12ac2cdc-9449-4efd-bb3e-ef6780e54901
     _name: An emotional arc
-    _startingAction: f2e1cf0b-e4fd-4f70-bd07-59a7604d99f0
+    _startingAction: 
     _actions:
     - _object:
-        rid: -2
+        rid: 7437749330377441347
+    - _object:
+        rid: 7437749330377441354
+    - _object:
+        rid: 7437749330377441381
+    - _object:
+        rid: 7437749330377441403
+    - _object:
+        rid: 7437749330377441405
+    - _object:
+        rid: 7437749330377441407
     _outcomes:
     - name: A
       guid: 15aa940a-cc1b-4af5-aba7-cd9d0c0597c2
+    - name: A
+      guid: f3572300-f651-487b-a6fb-14cfe9995d87
+    - name: A
+      guid: 24b60db6-d87b-4a17-a901-34f37f578b45
     _actionMappings:
       _pairs:
       - key: 701a7486-914b-4eea-b2f9-816601c12f8d
         value: 15aa940a-cc1b-4af5-aba7-cd9d0c0597c2
+      - key: b91e0f00-ff6e-4ef1-ae17-0c90b234cd4d
+        value: 15aa940a-cc1b-4af5-aba7-cd9d0c0597c2
+      - key: cfa497d3-ca68-4c17-a79b-8178b680195e
+        value: 24b60db6-d87b-4a17-a901-34f37f578b45
+      - key: a91d2944-b18d-49bb-b609-624a4376841c
+        value: f45444af-b473-4bc7-945c-2a27e6af75eb
+      - key: a2122f08-9362-4a3c-89e8-81baa79dac50
+        value: 69826945-13fd-4b8d-ad8e-f2284ffa8e7d
+  - _guid: e94be212-87e8-4f2f-b9a4-177eefe8c2cd
+    _name: New Beat
+    _startingAction: 0a95567f-f965-4e88-b99a-aff68afeb696
+    _actions:
+    - _object:
+        rid: 7437749330377441383
+    - _object:
+        rid: 7437749330377441384
+    _outcomes:
+    - name: A
+      guid: 53134c05-ccb1-43c8-bd47-f8acf7d56591
+    - name: A
+      guid: 1d8ac73c-736a-47d3-abe2-a0f44686516b
+    _actionMappings:
+      _pairs:
+      - key: 24a6ac43-1d31-4ef2-8ef9-fa9b9cc8708e
+        value: 53134c05-ccb1-43c8-bd47-f8acf7d56591
+      - key: bd3c7f5d-742a-48a6-afb4-f6adabd3bb40
+        value: 1d8ac73c-736a-47d3-abe2-a0f44686516b
+  - _guid: 09859dbc-cdaf-408d-9849-372ad1472c9d
+    _name: New Beat
+    _startingAction: 
+    _actions: []
+    _outcomes: []
+    _actionMappings:
+      _pairs: []
   _connections:
     _pairs:
     - key: $$START_NODE
@@ -41,17 +89,139 @@ MonoBehaviour:
       value: __STORY_END__
     - key: d2da2225-9e89-4c36-9920-d7f5360a548d
       value: __STORY_END__
-    - key: 15aa940a-cc1b-4af5-aba7-cd9d0c0597c2
-      value: __STORY_END__
   references:
     version: 2
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
-    - rid: 7437749218014396481
-      type: {class: StoryTimedStarter, ns: Moths.Stories.Samples, asm: Assembly-CSharp}
+    - rid: 7437749330377441347
+      type: {class: ExecuteTasks, ns: Moths.Stories.Actions, asm: Moths.StoryCreator}
       data:
-        _startTime: 5
+        _guid: cd9c73f6-1ca7-41ca-b9b3-a3238b533285
+        _name: Execute Tasks
+        _outputs:
+        - id: Then
+          name: Then
+          guid: b8130e56-1b4b-4630-9409-e578242f2d81
+        _tasks:
+        - _object:
+            rid: 7437749330377441348
+    - rid: 7437749330377441348
+      type: {class: DebugLogTask, ns: Moths.Stories.Tasks, asm: Moths.StoryCreator}
+      data:
+        _text: 
+    - rid: 7437749330377441354
+      type: {class: ExecuteTasks, ns: Moths.Stories.Actions, asm: Moths.StoryCreator}
+      data:
+        _guid: 31a0f3dd-9403-42db-a833-76b92d771a9a
+        _name: Execute Tasks
+        _outputs:
+        - id: Then
+          name: Then
+          guid: b91e0f00-ff6e-4ef1-ae17-0c90b234cd4d
+        _tasks:
+        - _object:
+            rid: 7437749330377441356
+    - rid: 7437749330377441356
+      type: {class: DebugLogTask, ns: Moths.Stories.Tasks, asm: Moths.StoryCreator}
+      data:
+        _text: hello darkness
+    - rid: 7437749330377441381
+      type: {class: ExecuteTasks, ns: Moths.Stories.Actions, asm: Moths.StoryCreator}
+      data:
+        _guid: 6c1c6352-1ccd-4fd8-b973-bc598ea82885
+        _name: Execute Tasks
+        _outputs:
+        - id: Then
+          name: Then
+          guid: cfa497d3-ca68-4c17-a79b-8178b680195e
+        _tasks:
+        - _object:
+            rid: 7437749330377441382
+    - rid: 7437749330377441382
+      type: {class: DebugLogTask, ns: Moths.Stories.Tasks, asm: Moths.StoryCreator}
+      data:
+        _text: 
+    - rid: 7437749330377441383
+      type: {class: ExecuteTasks, ns: Moths.Stories.Actions, asm: Moths.StoryCreator}
+      data:
+        _guid: 0a95567f-f965-4e88-b99a-aff68afeb696
+        _name: Execute Tasks
+        _outputs:
+        - id: Then
+          name: Then
+          guid: 24a6ac43-1d31-4ef2-8ef9-fa9b9cc8708e
+        _tasks:
+        - _object:
+            rid: 7437749330377441385
+    - rid: 7437749330377441384
+      type: {class: ExecuteTasks, ns: Moths.Stories.Actions, asm: Moths.StoryCreator}
+      data:
+        _guid: 69fced68-28f4-45fe-bb06-0cee975dd99d
+        _name: Execute Tasks
+        _outputs:
+        - id: Then
+          name: Then
+          guid: bd3c7f5d-742a-48a6-afb4-f6adabd3bb40
+        _tasks:
+        - _object:
+            rid: 7437749330377441386
+    - rid: 7437749330377441385
+      type: {class: DebugLogTask, ns: Moths.Stories.Tasks, asm: Moths.StoryCreator}
+      data:
+        _text: 
+    - rid: 7437749330377441386
+      type: {class: DebugLogTask, ns: Moths.Stories.Tasks, asm: Moths.StoryCreator}
+      data:
+        _text: 
+    - rid: 7437749330377441403
+      type: {class: ExecuteTasks, ns: Moths.Stories.Actions, asm: Moths.StoryCreator}
+      data:
+        _guid: f45444af-b473-4bc7-945c-2a27e6af75eb
+        _name: Execute Tasks
+        _outputs:
+        - id: Then
+          name: Then
+          guid: a2122f08-9362-4a3c-89e8-81baa79dac50
+        _tasks:
+        - _object:
+            rid: 7437749330377441404
+    - rid: 7437749330377441404
+      type: {class: DebugLogTask, ns: Moths.Stories.Tasks, asm: Moths.StoryCreator}
+      data:
+        _text: hello
+    - rid: 7437749330377441405
+      type: {class: ExecuteTasks, ns: Moths.Stories.Actions, asm: Moths.StoryCreator}
+      data:
+        _guid: 69826945-13fd-4b8d-ad8e-f2284ffa8e7d
+        _name: Execute Tasks
+        _outputs:
+        - id: Then
+          name: Then
+          guid: bb1b1a7f-9137-43d3-b2f5-9af91f20c460
+        _tasks:
+        - _object:
+            rid: 7437749330377441406
+    - rid: 7437749330377441406
+      type: {class: DebugLogTask, ns: Moths.Stories.Tasks, asm: Moths.StoryCreator}
+      data:
+        _text: hello
+    - rid: 7437749330377441407
+      type: {class: ExecuteTasks, ns: Moths.Stories.Actions, asm: Moths.StoryCreator}
+      data:
+        _guid: 243afcac-2a51-4094-aa5c-8bd8504cbce8
+        _name: Execute Tasks
+        _outputs:
+        - id: Then
+          name: Then
+          guid: a91d2944-b18d-49bb-b609-624a4376841c
+        _tasks:
+        - _object:
+            rid: 7437749330377441408
+    - rid: 7437749330377441408
+      type: {class: DebugLogTask, ns: Moths.Stories.Tasks, asm: Moths.StoryCreator}
+      data:
+        _text: 
 --- !u!114 &8447781867797993902
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -152,10 +322,120 @@ MonoBehaviour:
   - guid: 556c5267-9d2c-4c7a-894a-cf061a6c0979
     position: {x: 466.00003, y: 86.49999}
   - guid: 15aa940a-cc1b-4af5-aba7-cd9d0c0597c2
-    position: {x: 459.29868, y: 0.0000076293945}
+    position: {x: 375.48096, y: 198.68588}
   - guid: d2da2225-9e89-4c36-9920-d7f5360a548d
     position: {x: 762, y: 48}
   - guid: 2df5dede-52a2-4ae0-bd61-2c5b477c48ad
     position: {x: 247, y: 113}
   - guid: eec9e253-b749-4731-bfc1-cc53c94faa21
     position: {x: 177.82986, y: 133.26843}
+  - guid: cd9c73f6-1ca7-41ca-b9b3-a3238b533285
+    position: {x: 232, y: 0}
+  - guid: 11b1cdd3-f525-4c22-a3c9-9631b934be48
+    position: {x: 79, y: 307.12927}
+  - guid: ec39e88b-a000-4392-bd85-04fb727938dc
+    position: {x: 348.00003, y: 289.12924}
+  - guid: 65b7443b-50a3-45e4-93da-a290938c224e
+    position: {x: 607, y: 335.12924}
+  - guid: 31a0f3dd-9403-42db-a833-76b92d771a9a
+    position: {x: 147, y: 184}
+  - guid: 60e1a176-d1f3-4a3d-a028-53e91584ca13
+    position: {x: 205, y: 403.7276}
+  - guid: c5aff5c9-053f-4da2-a583-1867fc46efa2
+    position: {x: 473.99994, y: 385.72766}
+  - guid: 0f9ce126-9007-4f7d-85db-b926261d9ea3
+    position: {x: 628.8818, y: 736.86395}
+  - guid: 227b4296-29a5-4295-a915-75af0a17a42d
+    position: {x: 897.8818, y: 718.86395}
+  - guid: 550793c2-533e-41d7-9088-dd833de9e9c8
+    position: {x: 163.63412, y: 603.334}
+  - guid: f3adec07-6d68-4835-88f5-e3874fa12594
+    position: {x: 432.63412, y: 585.334}
+  - guid: 5258780e-6b84-4b02-96b2-0441daca9e31
+    position: {x: 691.63403, y: 631.334}
+  - guid: c591a6ac-2367-445c-8821-2b62ce2d2e62
+    position: {x: 960.63416, y: 613.334}
+  - guid: 73b415f4-4fd5-45b3-8cb5-e321a9e2da20
+    position: {x: 520.40375, y: 445.02124}
+  - guid: 476cff7e-b4b6-4d40-83f9-02fdad33bcc3
+    position: {x: 789.40375, y: 427.02124}
+  - guid: 099a5a06-d83a-4552-b015-f71c9e7fc97e
+    position: {x: 1048.4038, y: 473.02124}
+  - guid: 0100bfdb-6ab0-4da1-ba26-afa2866c5b3c
+    position: {x: 1317.4038, y: 455.02124}
+  - guid: f3572300-f651-487b-a6fb-14cfe9995d87
+    position: {x: 633, y: 321}
+  - guid: 6c1c6352-1ccd-4fd8-b973-bc598ea82885
+    position: {x: 32.499985, y: 368.905}
+  - guid: 24b60db6-d87b-4a17-a901-34f37f578b45
+    position: {x: 262.5, y: 398}
+  - guid: e94be212-87e8-4f2f-b9a4-177eefe8c2cd
+    position: {x: 198.99997, y: 172.52176}
+  - guid: 0a95567f-f965-4e88-b99a-aff68afeb696
+    position: {x: 226, y: 0}
+  - guid: 69fced68-28f4-45fe-bb06-0cee975dd99d
+    position: {x: 226, y: 121}
+  - guid: 53134c05-ccb1-43c8-bd47-f8acf7d56591
+    position: {x: 456, y: 0}
+  - guid: 1d8ac73c-736a-47d3-abe2-a0f44686516b
+    position: {x: 456, y: 121}
+  - guid: 27060116-a6b9-4fc2-bb60-afdfc55d34c0
+    position: {x: 198.99998, y: 180.26086}
+  - guid: ae405146-26a0-4597-9dc2-8a741b225d3e
+    position: {x: 264.49997, y: 48.3}
+  - guid: 0630beb0-d3ef-4cba-9ebb-9db404f92687
+    position: {x: 265, y: 230.9}
+  - guid: 6debe94d-5168-4712-bde2-c7c008784a79
+    position: {x: 486.00012, y: -16.100006}
+  - guid: 86afa6de-94c4-4b15-afa5-29ffb81c009f
+    position: {x: 577.30005, y: 129.95001}
+  - guid: 8695a7d4-3363-45cc-a241-4fb988f14b1e
+    position: {x: 335, y: 0}
+  - guid: a668570a-1838-4f4c-b16d-b440a994e52c
+    position: {x: 248, y: 199}
+  - guid: 1f27fc84-2867-4de6-9be0-089803c388f3
+    position: {x: 136, y: 398}
+  - guid: 2b6e1b4b-8c10-4e11-85c2-2dc0051e596c
+    position: {x: 478, y: 199}
+  - guid: 455fd7b6-1b24-4698-8e5d-eb31b2746a5f
+    position: {x: 736, y: 321}
+  - guid: abce5ac6-732c-4457-b5d4-a1916b5ac738
+    position: {x: 366, y: 398}
+  - guid: 3d8e1988-6313-4e82-939b-25f0285cd495
+    position: {x: -549.352, y: -614.1177}
+  - guid: ad6e96a9-d474-490a-a9f1-54059a8514cc
+    position: {x: -636.352, y: -415.11768}
+  - guid: 3a6470f2-ec71-4abf-8ef6-24bc06ed4415
+    position: {x: -748.352, y: -216.11768}
+  - guid: 0e8c3f7f-384b-4c5f-85a5-9881ce021ea3
+    position: {x: -406.352, y: -415.11768}
+  - guid: 8e53d042-9b8e-4bed-b594-0c8d0407c4f1
+    position: {x: -148.35199, y: -293.11768}
+  - guid: 22c595d2-b92c-4bfb-a95c-d812954c47e3
+    position: {x: -518.352, y: -216.11768}
+  - guid: f45444af-b473-4bc7-945c-2a27e6af75eb
+    position: {x: 410, y: 321}
+  - guid: d80feba0-44d1-4527-91c6-e91a036d23a8
+    position: {x: 402.50003, y: 388.35007}
+  - guid: 69826945-13fd-4b8d-ad8e-f2284ffa8e7d
+    position: {x: 410, y: 486}
+  - guid: 243afcac-2a51-4094-aa5c-8bd8504cbce8
+    position: {x: 147, y: 486}
+  - guid: 05fd5f66-f00c-4bce-95b4-958c80dd51a4
+    position: {x: 444.11716, y: 527.9145}
+  - guid: f2b453d9-6040-4c70-9b66-eae7044d019e
+    position: {x: 330.11716, y: 712.9145}
+  - guid: 00509190-063b-493e-9935-d6a30be8637f
+    position: {x: 707.1172, y: 664.9145}
+  - guid: 5a0edb69-31ab-4765-9a42-52a310aaae8b
+    position: {x: 672.1173, y: 542.9145}
+  - guid: 9f8414e2-2531-4352-b7ff-7349f00c19bf
+    position: {x: 930.1172, y: 664.9145}
+  - guid: cde69b54-a5ba-4f2e-aefd-e60e95f6dfb0
+    position: {x: 560.1172, y: 741.9145}
+  - guid: 2930cfb4-b4f0-4367-bb72-36a859be9d2b
+    position: {x: 707.1172, y: 829.9145}
+  - guid: 9d5e55a8-c098-4278-be2e-c3015f95daf2
+    position: {x: 444.11716, y: 829.9145}
+  - guid: 09859dbc-cdaf-408d-9849-372ad1472c9d
+    position: {x: 221.00003, y: 326.8696}
