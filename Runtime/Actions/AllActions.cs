@@ -26,7 +26,11 @@ namespace Moths.Stories.Actions
             for (int i = 0; i < _count; i++)
             {
                 var output = GetOutputByID(i.ToString());
-                beat.StartAction(beat.ActionMappings[output.guid], beatContext);
+                var actionGuid = beat.ActionMappings[output.guid];
+
+                if (beatContext.completedActions.Contains(actionGuid)) continue;
+
+                beat.StartAction(actionGuid, beatContext);
             }
         }
 
