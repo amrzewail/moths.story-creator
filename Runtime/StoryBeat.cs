@@ -93,9 +93,9 @@ namespace Moths.Stories
             return default;
         }
 
-        public void StartAction(string actionGuid, StoryContext.BeatContext context)
+        public void StartAction(string actionGuid, StoryContext.BeatContext context, bool forcePlay = false)
         {
-            if (!context.currentActions.Contains(actionGuid))
+            if (!context.currentActions.Contains(actionGuid) || forcePlay)
             {
                 var action = FindAction(actionGuid);
 
@@ -108,7 +108,11 @@ namespace Moths.Stories
 #if UNITY_EDITOR
                 Debug.Log($"[Story] Start action {Name}: {action.Name}");
 #endif
-                context.currentActions.Add(actionGuid);
+                if (!context.currentActions.Contains(actionGuid))
+                {
+                    context.currentActions.Add(actionGuid);
+                }
+
                 action.Prepare(this, context);
             }
         }

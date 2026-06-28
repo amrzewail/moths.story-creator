@@ -136,7 +136,7 @@ namespace Moths.Stories
 
             if (context.currentBeat.currentActions.Count > 0)
             {
-                foreach (var act in context.currentBeat.currentActions) beat.StartAction(act, context.currentBeat);
+                foreach (var act in context.currentBeat.currentActions) beat.StartAction(act, context.currentBeat, forcePlay: true);
             }
             else
             {
