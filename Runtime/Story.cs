@@ -134,30 +134,13 @@ namespace Moths.Stories
 #endif
             context.currentBeat.beatGuid = beatGuid;
 
-            beat.StartAction(beat.StartingAction, context.currentBeat);
-        }
-
-        public void StartBeatWithActions(ref StoryContext context, string beatGuid, List<string> actionsGuid)
-        {
-            var beat = FindBeat(beatGuid);
-
-            if (beat == null)
+            if (context.currentBeat.currentActions.Count > 0)
             {
-                Debug.LogError("[Story] Beat not found.");
-                return;
+                foreach (var act in context.currentBeat.currentActions) beat.StartAction(act, context.currentBeat);
             }
-
-            if (context.currentBeat.currentActions == null) context.currentBeat.currentActions = new();
-            if (context.currentBeat.completedActions == null) context.currentBeat.completedActions = new();
-
-#if UNITY_EDITOR
-            Debug.Log($"[Story] Start beat {beat.Name}");
-#endif
-            context.currentBeat.beatGuid = beatGuid;
-
-            foreach(var action in actionsGuid)
+            else
             {
-                beat.StartAction(action, context.currentBeat);
+                beat.StartAction(beat.StartingAction, context.currentBeat);
             }
         }
 
