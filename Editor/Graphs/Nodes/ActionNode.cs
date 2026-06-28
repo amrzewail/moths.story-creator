@@ -115,9 +115,8 @@ namespace Moths.Stories.Editor
                     Type baseInspectorType = typeof(CustomStoryActionInspector<>).MakeGenericType(actionType);
 
                     // 3. Find a concrete class in the current AppDomain that inherits from this base type
-                    Type customInspectorType = AppDomain.CurrentDomain.GetAssemblies()
-                        .SelectMany(a => a.GetTypes())
-                        .FirstOrDefault(t => t.IsClass && !t.IsAbstract && baseInspectorType.IsAssignableFrom(t));
+                    Type customInspectorType = TypeCache.GetTypesDerivedFrom(baseInspectorType)
+                                    .FirstOrDefault(t => t.IsClass && !t.IsAbstract);
 
                     var property = GetSerializedProperty();
 
