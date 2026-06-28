@@ -3,6 +3,7 @@ using UnityEngine;
 namespace Moths.Stories.Actions
 {
     [StoryAction("Any Action", icon: "icons/act_any")]
+    [System.Serializable]
     public class AnyAction : StoryAction
     {
         [SerializeField] int _count;
