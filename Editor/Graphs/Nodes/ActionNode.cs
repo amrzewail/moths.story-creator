@@ -2,6 +2,7 @@ using Moths.Graphs.Editor;
 using Moths.Stories.Actions.Editor;
 using Moths.Stories.Editor.Graphs;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
@@ -87,43 +88,65 @@ namespace Moths.Stories.Editor
                 title = _action.Name;
                 EditorUtility.SetDirty(_story);
             });
+            textField.style.marginBottom = 4;
 
             inspector.Add(textField);
 
             /// custom inspector
             {
-                // 1. Get the exact type of the current action
-                Type actionType = _action.GetType();
+                System.Type currentType = _action.GetType();
 
-                // 2. Create the generic base type: CustomStoryActionInspector<ActualActionType>
-                Type baseInspectorType = typeof(CustomStoryActionInspector<>).MakeGenericType(actionType);
+                Stack<System.Type> typeHierarchy = new Stack<System.Type>();
 
-                // 3. Find a concrete class in the current AppDomain that inherits from this base type
-                Type customInspectorType = AppDomain.CurrentDomain.GetAssemblies()
-                    .SelectMany(a => a.GetTypes())
-                    .FirstOrDefault(t => t.IsClass && !t.IsAbstract && baseInspectorType.IsAssignableFrom(t));
-
-                var property = GetSerializedProperty();
-
-                if (customInspectorType != null)
+                while (currentType != null && currentType != typeof(object) && currentType != typeof(StoryAction))
                 {
-                    object inspectorInstance = Activator.CreateInstance(customInspectorType);
-
-                    FieldInfo storyField = baseInspectorType.GetField("_story", BindingFlags.NonPublic | BindingFlags.Instance);
-                    if (storyField != null)
-                    {
-                        storyField.SetValue(inspectorInstance, _story);
-                    }
-
-                    MethodInfo updateMethod = baseInspectorType.GetMethod("UpdateInspector");
-                    if (updateMethod != null)
-                    {
-                        updateMethod.Invoke(inspectorInstance, new object[] { inspector, property, this });
-                    }
+                    typeHierarchy.Push(currentType);
+                    currentType = currentType.BaseType;
                 }
-                else
+
+                while (typeHierarchy.Count > 0)
                 {
-                    DrawManagedReferenceFieldsViaReflection(inspector, property);
+                    var classInspector = new VisualElement();
+
+                    // 1. Get the exact type of the current action
+                    Type actionType = typeHierarchy.Pop();
+
+                    // 2. Create the generic base type: CustomStoryActionInspector<ActualActionType>
+                    Type baseInspectorType = typeof(CustomStoryActionInspector<>).MakeGenericType(actionType);
+
+                    // 3. Find a concrete class in the current AppDomain that inherits from this base type
+                    Type customInspectorType = AppDomain.CurrentDomain.GetAssemblies()
+                        .SelectMany(a => a.GetTypes())
+                        .FirstOrDefault(t => t.IsClass && !t.IsAbstract && baseInspectorType.IsAssignableFrom(t));
+
+                    var property = GetSerializedProperty();
+
+                    if (customInspectorType != null)
+                    {
+                        object inspectorInstance = Activator.CreateInstance(customInspectorType);
+
+                        FieldInfo storyField = baseInspectorType.GetField("_story", BindingFlags.NonPublic | BindingFlags.Instance);
+                        if (storyField != null)
+                        {
+                            storyField.SetValue(inspectorInstance, _story);
+                        }
+
+                        MethodInfo updateMethod = baseInspectorType.GetMethod("UpdateInspector");
+                        if (updateMethod != null)
+                        {
+                            updateMethod.Invoke(inspectorInstance, new object[] { classInspector, property, this });
+                        }
+                    }
+                    else
+                    {
+                        DrawManagedReferenceFieldsViaReflection(classInspector, actionType, property);
+                    }
+
+                    if (classInspector.childCount > 0)
+                    {
+                        classInspector.style.marginBottom = 4;
+                        inspector.Add(classInspector);
+                    }
                 }
             }
 
@@ -142,18 +165,18 @@ namespace Moths.Stories.Editor
             return inspector;
         }
 
-        private void DrawManagedReferenceFieldsViaReflection(VisualElement container, SerializedProperty managedProperty)
+        private void DrawManagedReferenceFieldsViaReflection(VisualElement inspector, Type type, SerializedProperty managedProperty)
         {
             object targetObject = managedProperty.managedReferenceValue;
 
             if (targetObject == null) return;
 
-            System.Type type = targetObject.GetType();
-
             FieldInfo[] fields = type.GetFields(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
 
             foreach (FieldInfo fieldInfo in fields)
             {
+                if (fieldInfo.DeclaringType != type) continue;
+
                 bool isPublic = fieldInfo.IsPublic;
                 bool hasSerializeField = fieldInfo.GetCustomAttribute<SerializeField>() != null;
 
@@ -164,8 +187,10 @@ namespace Moths.Stories.Editor
                     if (childProperty != null)
                     {
                         PropertyField uiField = new PropertyField(childProperty);
+
                         uiField.BindProperty(managedProperty.serializedObject);
-                        container.Add(uiField);
+
+                        inspector.Add(uiField);
                     }
                 }
             }
