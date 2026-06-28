@@ -58,6 +58,7 @@ namespace Moths.Stories
                 var action = _actions[i].Value;
 
                 if (!context.currentActions.Contains(action.Guid)) continue;
+                if (context.deadendActions.Contains(action.Guid)) continue;
 
                 var output = action.Run(this, context);
 
@@ -67,10 +68,18 @@ namespace Moths.Stories
                 Debug.Log($"[Story] Complete action {Name}: {action.Name}");
 #endif
                 action.CleanUp(this, context);
-                context.currentActions.Remove(action.Guid);
                 context.completedActions.Add(action.Guid);
 
-                if (!_actionMappings.ContainsKey(output.guid)) continue;
+                if (!_actionMappings.ContainsKey(output.guid))
+                {
+#if UNITY_EDITOR
+                    Debug.Log($"[Story] Action {Name}: {action.Name} deadend");
+#endif
+                    context.deadendActions.Add(action.Guid);
+                    continue;
+                }
+
+                context.currentActions.Remove(action.Guid);
 
                 var nextGuid = _actionMappings[output.guid];
 

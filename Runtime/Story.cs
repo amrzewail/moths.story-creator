@@ -12,6 +12,8 @@ namespace Moths.Stories
             public string beatGuid;
             public HashSet<string> currentActions;
             public HashSet<string> completedActions;
+
+            internal HashSet<string> deadendActions;
         }
 
         public BeatContext currentBeat;
@@ -106,6 +108,7 @@ namespace Moths.Stories
 
                 if (context.currentBeat.currentActions == null) context.currentBeat.currentActions = new();
                 if (context.currentBeat.completedActions == null) context.currentBeat.completedActions = new();
+                if (context.currentBeat.deadendActions == null) context.currentBeat.deadendActions = new();
 
                 context.currentBeat.currentActions.Clear();
                 context.currentBeat.completedActions.Clear();
@@ -128,6 +131,7 @@ namespace Moths.Stories
 
             if (context.currentBeat.currentActions == null) context.currentBeat.currentActions = new();
             if (context.currentBeat.completedActions == null) context.currentBeat.completedActions = new();
+            if (context.currentBeat.deadendActions == null) context.currentBeat.deadendActions = new();
 
 #if UNITY_EDITOR
             Debug.Log($"[Story] Start beat {beat.Name}");
