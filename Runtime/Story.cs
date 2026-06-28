@@ -129,7 +129,6 @@ namespace Moths.Stories
             context.currentBeat.beatGuid = beatGuid;
 
             context.currentBeat.currentActions.Clear();
-            context.currentBeat.completedActions.Clear();
 
             beat.StartAction(beat.StartingAction, context.currentBeat);
         }
@@ -153,7 +152,6 @@ namespace Moths.Stories
             context.currentBeat.beatGuid = beatGuid;
 
             context.currentBeat.currentActions.Clear();
-            context.currentBeat.completedActions.Clear();
 
             foreach(var action in actionsGuid)
             {

@@ -63,6 +63,10 @@ MonoBehaviour:
     position: {x: 196, y: 0}
   - guid: 769cb092-5a59-471e-b869-f4017bbca653
     position: {x: 509.78268, y: -0.0000052452087}
+  - guid: afbc4079-8e11-4f59-8180-85083172b3e8
+    position: {x: 196, y: 105}
+  - guid: 626a4fb9-b2be-4ddc-817f-62dc35597e05
+    position: {x: 109, y: 277}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -126,6 +130,10 @@ MonoBehaviour:
     _actions:
     - _object:
         rid: 7437749328569172316
+    - _object:
+        rid: 6019517847292346435
+    - _object:
+        rid: 6019517847292346436
     _outcomes:
     - name: Complete
       guid: 769cb092-5a59-471e-b869-f4017bbca653
@@ -140,6 +148,28 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
+    - rid: 6019517847292346435
+      type: {class: TestAction, ns: Moths.Stories.Samples, asm: Assembly-CSharp}
+      data:
+        _guid: afbc4079-8e11-4f59-8180-85083172b3e8
+        _name: test action
+        _outputs:
+        - id: Then
+          name: Then
+          guid: d9da745d-d5d5-4fef-9b85-6c709a2886f8
+        number: 0
+    - rid: 6019517847292346436
+      type: {class: TestActionChild, ns: Moths.Stories.Samples, asm: Assembly-CSharp}
+      data:
+        _guid: 626a4fb9-b2be-4ddc-817f-62dc35597e05
+        _name: 'test action child asdas '
+        _outputs:
+        - id: Then
+          name: Then
+          guid: 11f5d4d1-19a5-4aea-b1f7-486484777359
+        serparentNumber: 0
+        parentNumber: 0
+        stringValue: 
     - rid: 7437749307642478592
       type: {class: ExecuteTasks, ns: Moths.Stories.Actions, asm: Moths.StoryCreator}
       data:
