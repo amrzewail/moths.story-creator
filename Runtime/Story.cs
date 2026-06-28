@@ -104,6 +104,12 @@ namespace Moths.Stories
                     return StoryOutcome.Complete;
                 }
 
+                if (context.currentBeat.currentActions == null) context.currentBeat.currentActions = new();
+                if (context.currentBeat.completedActions == null) context.currentBeat.completedActions = new();
+
+                context.currentBeat.currentActions.Clear();
+                context.currentBeat.completedActions.Clear();
+
                 StartBeat(ref context, nextBeat);
             }
 
@@ -128,8 +134,6 @@ namespace Moths.Stories
 #endif
             context.currentBeat.beatGuid = beatGuid;
 
-            context.currentBeat.currentActions.Clear();
-
             beat.StartAction(beat.StartingAction, context.currentBeat);
         }
 
@@ -150,8 +154,6 @@ namespace Moths.Stories
             Debug.Log($"[Story] Start beat {beat.Name}");
 #endif
             context.currentBeat.beatGuid = beatGuid;
-
-            context.currentBeat.currentActions.Clear();
 
             foreach(var action in actionsGuid)
             {
