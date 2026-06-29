@@ -80,6 +80,10 @@ namespace Moths.Stories.Editor
         {
             var inspector = new VisualElement();
 
+            var guidLabel = new Label(_action.Guid);
+            guidLabel.style.marginBottom = 2;
+            inspector.Add(guidLabel);
+
             var textField = new TextField("Name");
             textField.value = _action.Name;
             textField.RegisterValueChangedCallback(callback =>
