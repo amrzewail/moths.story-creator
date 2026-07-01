@@ -98,7 +98,7 @@ namespace Moths.Stories.Editor
             // This gets called whenever ANY asset is double clicked
             // Check if the asset is of the proper type
             UnityEngine.Object asset = EditorUtility.EntityIdToObject(instanceID);
-            if (!(asset is Story storyAsset)) return false;
+            if (asset is not Story storyAsset) return false;
 
             // 1. Get the path to the main Story asset
             string assetPath = AssetDatabase.GetAssetPath(storyAsset);
@@ -129,6 +129,8 @@ namespace Moths.Stories.Editor
 
             StoryCreator window = EditorWindow.CreateWindow<StoryCreator>();
 
+            Texture2D icon = Resources.Load<Texture2D>("Moths.StoryCreator/icons/icon_story");
+            window.titleContent = new GUIContent(storyAsset.name, icon);
             window._properties = graphProperties;
             window._story = storyAsset;
 

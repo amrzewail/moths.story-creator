@@ -20,17 +20,20 @@ namespace Moths.Stories
     {
         [SerializeField] string _guid;
         [SerializeField] string _name;
+        [SerializeField] string _description;
         [SerializeField] string _startingAction;
         [SerializeField] List<InterfaceReference<StoryAction>> _actions = new();
         [SerializeField] List<BeatOutcome> _outcomes = new();
         [SerializeField] SerializableDictionary<string, string> _actionMappings = new();
 
         public string Name { get => _name; set => _name = value; }
+        public string Description { get => _description; set => _description = value; }
         public string Guid => _guid;
         public string StartingAction { get => _startingAction; set => _startingAction = value; }
         public IReadOnlyList<BeatOutcome> Outcomes => _outcomes;
         public IReadOnlyList<InterfaceReference<StoryAction>> Actions => _actions;
         public SerializableDictionary<string, string> ActionMappings => _actionMappings;
+
 
         public StoryBeat(string guid)
         {

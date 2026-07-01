@@ -1,6 +1,4 @@
-using Codice.Utils;
 using Moths.Graphs.Editor;
-using Moths.Stories.Editor.Graphs;
 using System;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
@@ -14,6 +12,7 @@ namespace Moths.Stories.Editor
         private Story _story;
         private Node _node;
         private StoryBeat _beat;
+        private Label _descriptionLabel;
 
         public StoryBeat Beat => _beat;
 
@@ -28,6 +27,8 @@ namespace Moths.Stories.Editor
             GUID = beat.Guid;
             title = beat.Name;
             position = node.position;
+
+            this.RegisterCallback<MouseDownEvent>(OnMouseDown);
         }
 
         public string InspectorTitle => _beat.Name;
@@ -55,10 +56,21 @@ namespace Moths.Stories.Editor
                 }
             }
 
-            extensionContainer.Add(new Button(EditClicked)
+            extensionContainer.Add(_descriptionLabel = new Label(_beat.Description));
+        }
+
+        private void OnMouseDown(MouseDownEvent evt)
+        {
+            // Check if it's a Left-Click (button 0) and a Double-Click (clickCount 2)
+            if (evt.button == 0 && evt.clickCount == 2)
             {
-                text = "Edit"
-            });
+                // Trigger your edit event
+                EditClicked?.Invoke();
+
+                // Stop propagation so the GraphView doesn't process the double-click further 
+                // (prevents unwanted default behaviors like framing or opening other menus)
+                evt.StopPropagation();
+            }
         }
 
         public VisualElement GetInspector()
@@ -74,7 +86,19 @@ namespace Moths.Stories.Editor
                 EditorUtility.SetDirty(_story);
             });
 
+            var descriptionField = new TextField("Description");
+            descriptionField.multiline = true;
+            descriptionField.value = _beat.Description;
+            descriptionField.RegisterValueChangedCallback(callback =>
+            {
+                _beat.Description = callback.newValue;
+                EditorUtility.SetDirty(_story);
+
+                _descriptionLabel.text = _beat.Description;
+            });
+
             inspector.Add(textField);
+            inspector.Add(descriptionField);
 
 
             inspector.Add(new Button(EditClicked)
