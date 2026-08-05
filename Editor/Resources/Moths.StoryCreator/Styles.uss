@@ -67,7 +67,7 @@ Sidebar {
 }
 
 .inspector {
-	width: 400px;
+	width: 550px;
 	padding: 5px;
 }
 
