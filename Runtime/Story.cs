@@ -68,6 +68,11 @@ namespace Moths.Stories
             StartBeat(ref context, _startingBeat);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="context"></param>
+        /// <returns></returns>
         public StoryOutcome Run(ref StoryContext context)
         {
             if (string.IsNullOrEmpty(context.currentBeat.beatGuid)) return StoryOutcome.Pending;
@@ -106,9 +111,9 @@ namespace Moths.Stories
                     return StoryOutcome.Complete;
                 }
 
-                if (context.currentBeat.currentActions == null) context.currentBeat.currentActions = new();
-                if (context.currentBeat.completedActions == null) context.currentBeat.completedActions = new();
-                if (context.currentBeat.deadendActions == null) context.currentBeat.deadendActions = new();
+                context.currentBeat.currentActions ??= new();
+                context.currentBeat.completedActions ??= new();
+                context.currentBeat.deadendActions ??= new();
 
                 context.currentBeat.currentActions.Clear();
                 context.currentBeat.completedActions.Clear();
@@ -129,9 +134,9 @@ namespace Moths.Stories
                 return;
             }
 
-            if (context.currentBeat.currentActions == null) context.currentBeat.currentActions = new();
-            if (context.currentBeat.completedActions == null) context.currentBeat.completedActions = new();
-            if (context.currentBeat.deadendActions == null) context.currentBeat.deadendActions = new();
+            context.currentBeat.currentActions ??= new();
+            context.currentBeat.completedActions ??= new();
+            context.currentBeat.deadendActions ??= new();
 
 #if UNITY_EDITOR
             Debug.Log($"[Story] Start beat {beat.Name}");

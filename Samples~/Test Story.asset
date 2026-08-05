@@ -18,10 +18,14 @@ MonoBehaviour:
   _starter:
     _object:
       rid: -2
-  _startingBeat: 
+  _startingBeat: 12ac2cdc-9449-4efd-bb3e-ef6780e54901
   _beats:
   - _guid: 12ac2cdc-9449-4efd-bb3e-ef6780e54901
     _name: An emotional arc
+    _description: 'testing the water of the new way
+
+      and it wasn''t as i expected
+      it...'
     _startingAction: 
     _actions:
     - _object:
@@ -57,6 +61,7 @@ MonoBehaviour:
         value: 69826945-13fd-4b8d-ad8e-f2284ffa8e7d
   - _guid: e94be212-87e8-4f2f-b9a4-177eefe8c2cd
     _name: New Beat
+    _description: 
     _startingAction: 0a95567f-f965-4e88-b99a-aff68afeb696
     _actions:
     - _object:
@@ -76,6 +81,7 @@ MonoBehaviour:
         value: 1d8ac73c-736a-47d3-abe2-a0f44686516b
   - _guid: 09859dbc-cdaf-408d-9849-372ad1472c9d
     _name: New Beat
+    _description: 
     _startingAction: 
     _actions: []
     _outcomes: []
@@ -272,7 +278,7 @@ MonoBehaviour:
   - guid: 8a3a0a81-6989-4039-92a3-7b29da54ee6d
     position: {x: 571, y: -86}
   - guid: __STORY_END__
-    position: {x: 417.5, y: 0}
+    position: {x: 646.8157, y: 0.000015754948}
   - guid: 9537296e-1c69-4bf5-9462-e97b05c47050
     position: {x: 542, y: 38.5}
   - guid: 297c525a-775d-480f-92c3-7605ce01ef92
@@ -300,7 +306,7 @@ MonoBehaviour:
   - guid: eae17a41-8642-45aa-9c2f-cc8b8f10c9f9
     position: {x: 578, y: 119}
   - guid: 12ac2cdc-9449-4efd-bb3e-ef6780e54901
-    position: {x: 199, y: 0}
+    position: {x: 192.42142, y: 0.50000805}
   - guid: d5765ec2-bcd4-4222-ad87-3027bea93ab7
     position: {x: 360, y: 129}
   - guid: e442f770-d232-4298-966a-c83eab895061

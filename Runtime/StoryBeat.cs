@@ -192,10 +192,11 @@ namespace Moths.Stories
             _outcomes.Sort(comparison);
         }
 
-        private StoryAction FindAction(string actionGuid)
+        public StoryAction FindAction(string actionGuid)
         {
             for (int i = 0; i < _actions.Count; i++)
             {
+                if (!_actions[i]) continue;
                 var action = _actions[i].Value;
                 if (action.Guid == actionGuid) return action;
             }

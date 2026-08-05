@@ -16,7 +16,7 @@ MonoBehaviour:
   - guid: __STORY_END__
     position: {x: 853.3044, y: -0.000010371208}
   - guid: fb61046a-444d-4c8b-aae3-069a4bc82a15
-    position: {x: 370.4928, y: -0.000031471252}
+    position: {x: 412.08105, y: -0.99999934}
   - guid: 71144a94-df7c-4716-b4b7-ac72834bac26
     position: {x: 2417.4578, y: 0.0000032186508}
   - guid: 4bfb0fe6-c667-4dad-affb-463b3d8f8cd7
@@ -58,15 +58,21 @@ MonoBehaviour:
   - guid: 8aa5132e-3b4b-4a47-aabc-d09c5272aa2f
     position: {x: 1013.70514, y: 0}
   - guid: ac543f2f-2177-4daa-96a1-8c690eeffd95
-    position: {x: 157.79477, y: 76.99994}
+    position: {x: 167, y: -1}
   - guid: 921f4f4b-c4cf-4fe0-b91e-1472ceaa01a9
     position: {x: 196, y: 0}
   - guid: 769cb092-5a59-471e-b869-f4017bbca653
     position: {x: 509.78268, y: -0.0000052452087}
   - guid: afbc4079-8e11-4f59-8180-85083172b3e8
-    position: {x: 196, y: 105}
+    position: {x: 339, y: 301.14624}
   - guid: 626a4fb9-b2be-4ddc-817f-62dc35597e05
     position: {x: 109, y: 277}
+  - guid: e65b9274-58ed-4634-bc8e-5f8160263dc9
+    position: {x: 32.49997, y: 69.643135}
+  - guid: 2e8eb10d-123e-409e-a071-e4ba8a9dad36
+    position: {x: 248.1647, y: 114.972565}
+  - guid: 48e30f57-3966-498d-80af-bcff08a3b069
+    position: {x: 774.5, y: 410.5}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -89,6 +95,7 @@ MonoBehaviour:
   _beats:
   - _guid: fb61046a-444d-4c8b-aae3-069a4bc82a15
     _name: Dinner Time
+    _description: 
     _startingAction: eb816f82-fc1f-4068-93ba-5a6f08525501
     _actions:
     - _object:
@@ -126,6 +133,7 @@ MonoBehaviour:
         value: 40fac0d1-f91e-46fc-88c9-208e29455e24
   - _guid: ac543f2f-2177-4daa-96a1-8c690eeffd95
     _name: Start
+    _description: 
     _startingAction: 921f4f4b-c4cf-4fe0-b91e-1472ceaa01a9
     _actions:
     - _object:
@@ -134,6 +142,10 @@ MonoBehaviour:
         rid: 6019517847292346435
     - _object:
         rid: 6019517847292346436
+    - _object:
+        rid: 2960699131951841281
+    - _object:
+        rid: 2960699131951841282
     _outcomes:
     - name: Complete
       guid: 769cb092-5a59-471e-b869-f4017bbca653
@@ -141,6 +153,14 @@ MonoBehaviour:
       _pairs:
       - key: a7c6ac4d-2006-4ddf-9b80-9a53b1c3977b
         value: 769cb092-5a59-471e-b869-f4017bbca653
+  - _guid: 48e30f57-3966-498d-80af-bcff08a3b069
+    _name: New Beat
+    _description: 
+    _startingAction: 
+    _actions: []
+    _outcomes: []
+    _actionMappings:
+      _pairs: []
   _connections:
     _pairs: []
   references:
@@ -148,6 +168,28 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
+    - rid: 2960699131951841281
+      type: {class: ExecuteTasks, ns: Moths.Stories.Actions, asm: Moths.StoryCreator}
+      data:
+        _guid: e65b9274-58ed-4634-bc8e-5f8160263dc9
+        _name: Execute Tasks
+        _outputs:
+        - id: Then
+          name: Then
+          guid: 07a58678-1a01-4053-a4ed-5f9e1460a5ad
+        _tasks: []
+    - rid: 2960699131951841282
+      type: {class: TestActionChild, ns: Moths.Stories.Samples, asm: Assembly-CSharp}
+      data:
+        _guid: 2e8eb10d-123e-409e-a071-e4ba8a9dad36
+        _name: test action child
+        _outputs:
+        - id: Then
+          name: Then
+          guid: d70216f5-03f1-4694-9831-09f07fc7af47
+        serparentNumber: 0
+        parentNumber: 0
+        stringValue: 
     - rid: 6019517847292346435
       type: {class: TestAction, ns: Moths.Stories.Samples, asm: Assembly-CSharp}
       data:
