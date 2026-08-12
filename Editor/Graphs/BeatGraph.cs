@@ -97,6 +97,8 @@ namespace Moths.Stories.Editor.Graphs
 
         private void EdgeRemovedCallback(Edge edge)
         {
+            if (edge.output == null) return;
+
             if (edge.output.node is StartNode<BeatNode>)
             {
                 _beat.StartingAction = string.Empty;
