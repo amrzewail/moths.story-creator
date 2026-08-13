@@ -91,6 +91,7 @@ namespace Moths.Stories
                 {
                     foreach(var actionGuid in context.currentActions)
                     {
+                        if (context.deadendActions.Contains(actionGuid)) continue;
                         var currAction = FindAction(actionGuid);
                         if (currAction == null) continue;
                         currAction.CleanUp(this, context);
